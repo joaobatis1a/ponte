@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>P.O.N.T.E. — Login</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/ponte-mvp-main/frontend/css/styles.css" />
+  <link rel="stylesheet" href="/ponte-mvp-main/frontend/css/desktop.css" />
+  <link rel="stylesheet" href="/ponte-mvp-main/frontend/css/auth.css" />
+  </head>
+  <body>
+    <main class="card" role="main">
+      <header class="topbar">
+        <button class="icon-btn" id="helpBtn" aria-label="Ajuda" type="button">
+          <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 1.5-2.5 2-2.5 4"/><circle cx="12" cy="17" r="0.6" fill="currentColor"/></svg>
+        </button>
+        <div class="brand">
+          <img src="/ponte-mvp-main/frontend/assets/logo-1.png" alt="Mascote P.O.N.T.E." width="56" height="56" />
+        </div>
+        <button class="icon-btn" id="closeBtn" aria-label="Fechar" type="button">
+          <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+      </header>
+
+      <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="100">
+        <div class="progress-fill" style="width:100%"></div>
+      </div>
+
+      <h1 class="title">Faça <span class="accent">login</span>!</h1>
+      <p class="subtitle">Confere se é o mesmo email que você fez cadastro e entre na sua conta.</p>
+
+      <form id="loginForm" class="form" novalidate>
+        <div class="field">
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" placeholder="Ex.: exemplo@empresa.com" autocomplete="email" />
+          <p class="error" id="email-error" hidden></p>
+        </div>
+
+        <div class="field">
+          <label for="senha">Senha</label>
+          <div class="password-wrap">
+            <input id="senha" name="senha" type="password" placeholder="Mín. 8 letras e números" autocomplete="current-password" />
+            <button type="button" class="eye" data-target="senha" aria-label="Mostrar senha">
+              <svg class="eye-off" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.94 10.94 0 0 1 12 20C5 20 1 12 1 12a21.77 21.77 0 0 1 5.17-6.17"/><path d="M9.9 4.24A10.94 10.94 0 0 1 12 4c7 0 11 8 11 8a21.78 21.78 0 0 1-3.17 4.17"/><path d="M14.12 14.12A3 3 0 1 1 9.88 9.88"/><path d="M1 1l22 22"/></svg>
+            </button>
+          </div>
+          <p class="error" id="senha-error" hidden></p>
+        </div>
+
+        <div class="captcha" id="captcha">
+          <label class="captcha-check">
+            <input type="checkbox" id="robot" />
+            <span class="box" aria-hidden="true"></span>
+            <span class="captcha-label">I'm not a robot</span>
+          </label>
+          <div class="captcha-brand">
+            <div class="recaptcha-logo" aria-hidden="true">
+              <svg viewBox="0 0 32 32" width="34" height="34" fill="none" stroke="#1c3aa9" stroke-width="2"><path d="M16 4a12 12 0 1 1-8.49 3.51"/><path d="M16 4v6l4-2"/></svg>
+            </div>
+            <span class="recaptcha-text">reCAPTCHA<br/><small>Personvern · Vilkår</small></span>
+          </div>
+        </div>
+        <p class="error" id="captcha-error" hidden></p>
+
+        <div class="actions single">
+          <button type="submit" class="btn">Finalizar Cadastro</button>
+        </div>
+
+        <p class="login-hint" style="grid-column:1/-1;text-align:center;margin-top:8px;font-size:.92rem;color:var(--muted)">
+          Não tem cadastro? <a href="index.html" style="color:var(--primary);font-weight:800;text-decoration:none">Cadastre-se</a>
+        </p>
+      </form>
+    </main>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+    <script>
+      (function(){
+        const $ = (s, r=document) => r.querySelector(s);
+        const form = $('#loginForm');
+        const email = $('#email');
+        const senha = $('#senha');
+        const robot = $('#robot');
+        const toastEl = $('#toast');
+
+        function toast(msg, type){
+          toastEl.textContent = msg;
+          toastEl.className = 'toast show ' + (type||'');
+          setTimeout(()=>toastEl.className='toast', 2200);
+        }
+        function showError(id, msg){
+          const el = document.getElementById(id+'-error');
+          if(!el) return;
+          el.textContent = msg; el.hidden = !msg;
+        }
+
+        document.querySelectorAll('.eye').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const t = document.getElementById(btn.dataset.target);
+            if (!t) return;
+            t.type = t.type === 'password' ? 'text' : 'password';
+          });
+        });
+
+        form.addEventListener('submit', (e) => {
+          e.preventDefault();
+          let ok = true;
+          showError('email',''); showError('senha',''); showError('captcha','');
+          if (!/^\S+@\S+\.\S+$/.test(email.value.trim())) { showError('email','Email inválido'); ok = false; }
+          if (senha.value.length < 8) { showError('senha','Mín. 8 caracteres'); ok = false; }
+          if (!robot.checked) { showError('captcha','Confirme que você não é um robô'); ok = false; }
+          if (!ok) { toast('Confere os campos','error'); return; }
+          toast('Login realizado!','success');
+          setTimeout(()=>{ window.location.href = 'chat.html'; }, 700);
+        });
+
+        $('#closeBtn').addEventListener('click', ()=> toast('Saída cancelada — segue o jogo!'));
+        $('#helpBtn').addEventListener('click', ()=> toast('Precisa de ajuda? Tamo junto 🦀'));
+      })();
+    </script>
+  </body>
+  </html>

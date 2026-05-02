@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>P.O.N.T.E. — Conta sobre tuas formações</title>
+  <meta name="description" content="Adicione suas formações: instituição, cidade, curso e período." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/ponte-mvp-main/frontend/css/styles.css" />
+  <link rel="stylesheet" href="/ponte-mvp-main/frontend/css/desktop.css" />
+  <link rel="stylesheet" href="/ponte-mvp-main/frontend/css/formacoes.css" />
+</head>
+<body>
+  <main class="card" role="main">
+    <header class="topbar">
+      <button type="button" class="icon-btn" id="helpBtn" aria-label="Ajuda">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+      </button>
+      <div class="brand">
+        <img src="/ponte-mvp-main/frontend/assets/logo-1.png" alt="Mascote P.O.N.T.E." width="56" height="56" />
+      </div>
+      <button type="button" class="icon-btn" id="closeBtn" aria-label="Fechar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </header>
+
+    <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="65">
+      <div class="progress-bar" id="progressBar" style="width:65%"></div>
+    </div>
+
+    <h1 class="title">Conta sobre<br/>tuas <span class="accent">formações</span>.</h1>
+    <p class="subtitle">Insira a sua escola e/ou faculdade. Não é obrigatório se tu não tiver!</p>
+
+    <form id="form" novalidate>
+      <div class="field">
+        <label for="instituicao">Instituição</label>
+        <div class="select-wrap">
+          <select id="instituicao" name="instituicao" class="placeholder">
+            <option value="" disabled selected hidden>ETE - Porto Digital</option>
+            <option value="ETE - Porto Digital">ETE - Porto Digital</option>
+            <option value="FAFIRE">UNIFAFIRE</option>
+            <option value="UNINASSAU">UNINASSAU</option>
+            <option value="UNIBRA">UNIBRA</option>
+            <option value="UFPR">UFPR</option>
+            <option value="UFPE">UFPE</option>
+            <option value="UFRPE">UFRPE</option>
+            <option value="UPE">UPE</option>
+            <option value="CESAR School">CESAR School</option>
+            <option value="IFPE">IFPE</option>
+            <option value="UNICAP">UNICAP</option>
+            <option value="Outra">Outra</option>
+          </select>
+        </div>
+        <p class="error" id="instituicao-error"></p>
+      </div>
+
+      <div class="field">
+        <label for="cidade">Cidade</label>
+        <div class="select-wrap">
+          <select id="cidade" name="cidade" class="placeholder">
+            <option value="" disabled selected hidden>Recife</option>
+            <option value="Recife">Recife</option>
+            <option value="Olinda">Olinda</option>
+            <option value="Igarassu">Igarassu</option>
+            <option value="ABREU E LIMA">Abreu e Lima</option>
+            <option value="Jaboatão dos Guararapes">Jaboatão dos Guararapes</option>
+            <option value="Caruaru">Caruaru</option>
+            <option value="Petrolina">Petrolina</option>
+            <option value="Paulista">Paulista</option>
+            <option value="Outra">Outra</option>
+          </select>
+        </div>
+        <p class="error" id="cidade-error"></p>
+      </div>
+
+      <div class="field">
+        <label for="curso">Curso</label>
+        <div class="select-wrap">
+          <select id="curso" name="curso" class="placeholder">
+            <option value="" disabled selected hidden>Ensino Médio</option>
+            <option value="Ensino Médio">Ensino Médio</option>
+            <option value="Análise e Desenvolvimento de Sistemas">Análise e Desenvolvimento de Sistemas</option>
+            <option value="Técnico em Informática">Técnico em Informática</option>
+            <option value="Técnico em Redes de Computadores">Técnico em Redes de Computadores</option>
+            <option value="Ciencias da Computação">Ciencias da Computação</option>
+            <option value="Sistemas para Internet">Sistemas para Internet</option>
+            <option value="Técnico em Administração">Técnico em Administração</option>
+            <option value="Direito">Direito</option>
+            <option value="Letras">Letras</option>            
+            <option value="Engenharia">Engenharia</option>
+            <option value="Design">Design</option>
+            <option value="Outro">Outro</option>
+          </select>
+        </div>
+        <p class="error" id="curso-error"></p>
+      </div>
+
+      <div class="two-cols">
+        <div class="field">
+          <label for="inicio">Início</label>
+          <input id="inicio" name="inicio" type="text" inputmode="numeric" placeholder="DD/MM/AA" maxlength="8" />
+          <p class="error" id="inicio-error"></p>
+        </div>
+        <div class="field">
+          <label for="fim">Fim</label>
+          <input id="fim" name="fim" type="text" inputmode="numeric" placeholder="DD/MM/AA" maxlength="8" />
+          <p class="error" id="fim-error"></p>
+        </div>
+      </div>
+
+      <button type="button" class="btn btn-outline" id="addFormacao">
+        Adicionar Formação +
+      </button>
+
+      <div class="formacoes-list" id="formacoesList" aria-live="polite"></div>
+
+      <div class="actions">
+        <button type="button" class="btn" id="prevBtn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          Anterior
+        </button>
+        <button type="submit" class="btn">
+          Próximo
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+    </form>
+  </main>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script src="/ponte-mvp-main/frontend/js/formacoes.js"></script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>P.O.N.T.E. — Cadastro pronto!</title>
+  <meta name="description" content="Revise suas informações e prossiga para a conversa com o Manguelito." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/ponte-mvp-main/frontend/css/styles.css" />
+  <link rel="stylesheet" href="/ponte-mvp-main/frontend/css/desktop.css" />
+  <link rel="stylesheet" href="/ponte-mvp-main/frontend/css/pronto.css" />
+</head>
+<body>
+  <main class="card" role="main">
+    <header class="topbar">
+      <button type="button" class="icon-btn" id="helpBtn" aria-label="Ajuda">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+      </button>
+      <div class="brand">
+        <img src="/ponte-mvp-main/frontend/assets/logo-1.png" alt="Mascote P.O.N.T.E." width="56" height="56" />
+       </div>
+      <button type="button" class="icon-btn" id="closeBtn" aria-label="Fechar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </header>
+
+    <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="100">
+      <div class="progress-bar" style="width:100%"></div>
+    </div>
+
+    <h1 class="title">Cadastro <span class="accent">pronto</span>!</h1>
+    <p class="subtitle">Revise suas informações e prossiga para a conversa com o Manguelito.</p>
+
+    <div class="review-card" id="reviewCard">
+      <!-- preenchido via JS -->
+    </div>
+
+    <div class="actions">
+      <button type="button" class="btn" id="prevBtn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        Anterior
+      </button>
+      <button type="button" class="btn" id="nextBtn">
+        Próximo
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
+    </div>
+  </main>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script src="/ponte-mvp-main/frontend/js/pronto.js"></script>
+</body>
+</html>
