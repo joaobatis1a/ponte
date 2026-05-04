@@ -1,0 +1,109 @@
+/* Tela final: Cadastro pronto */
+
+.review-card {
+  background: var(--input-bg);
+  border-radius: 18px;
+  padding: 18px;
+  margin: 8px 0 4px;
+  min-height: 280px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.review-section h3 {
+  margin: 0 0 8px;
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--primary-dark);
+}
+.review-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 6px 0;
+  border-bottom: 1px dashed rgba(43,27,20,.15);
+  font-size: 14px;
+}
+.review-row:last-child { border-bottom: 0; }
+.review-row .k { color: var(--muted); font-weight: 700; }
+.review-row .v {
+  font-weight: 800;
+  text-align: right;
+  word-break: break-word;
+  max-width: 60%;
+}
+
+.review-photo {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding-bottom: 10px;
+  border-bottom: 1px dashed rgba(43,27,20,.15);
+}
+.review-photo img,
+.review-photo .ph {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: var(--secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+  flex-shrink: 0;
+}
+.review-photo .name {
+  font-weight: 900;
+  font-size: 18px;
+  line-height: 1.1;
+  margin: 0 0 2px;
+}
+.review-photo .sub {
+  margin: 0;
+  font-size: 12px;
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.review-empty {
+  margin: 0;
+  font-size: 13px;
+  color: var(--muted);
+  font-style: italic;
+}
+.review-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.review-list .item {
+  background: rgba(255,255,255,.45);
+  border-radius: 10px;
+  padding: 10px 12px;
+}
+.review-list .item p { margin: 0; }
+.review-list .item .t { font-weight: 800; font-size: 14px; }
+.review-list .item .m { font-size: 12px; color: var(--muted); font-weight: 700; }
+
+.edit-link {
+  background: transparent;
+  border: 0;
+  color: var(--primary);
+  font: inherit;
+  font-weight: 800;
+  font-size: 13px;
+  cursor: pointer;
+  padding: 0;
+  margin-left: 8px;
+}
+.edit-link:hover { text-decoration: underline; }
+
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

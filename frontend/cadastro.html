@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>P.O.N.T.E. — Vamo começar com o básico</title>
+  <meta name="description" content="Cadastro inicial P.O.N.T.E.: nome, sobrenome, foto, data de nascimento e CEP." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/desktop.css" />
+</head>
+<body>
+  <main class="card" role="main">
+    <header class="topbar">
+      <button type="button" class="icon-btn" id="helpBtn" aria-label="Ajuda">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+      </button>
+
+      <div class="brand">
+        <img src="assets/logo-1.png" alt="Mascote P.O.N.T.E." width="56" height="56" />
+      </div>
+
+      <button type="button" class="icon-btn" id="closeBtn" aria-label="Fechar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </header>
+
+    <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="15">
+      <div class="progress-bar" id="progressBar" style="width:15%"></div>
+    </div>
+
+    <h1 class="title">Vamo começar<br/>com o <span class="accent">básico</span>.</h1>
+    <p class="subtitle">Passa tuas informações principais pra a gente começar a montar teu perfil.</p>
+
+    <form id="form" novalidate>
+      <div class="field">
+        <label for="nome">Nome</label>
+        <input id="nome" name="nome" type="text" placeholder="Ex.: Reginaldo" autocomplete="given-name" />
+        <p class="error" id="nome-error"></p>
+      </div>
+
+      <div class="field">
+        <label for="sobrenome">Sobrenome</label>
+        <input id="sobrenome" name="sobrenome" type="text" placeholder="Ex.: Rossi" autocomplete="family-name" />
+        <p class="error" id="sobrenome-error"></p>
+      </div>
+
+      <div class="row">
+        <div class="photo-col">
+          <button type="button" class="photo-btn" id="photoBtn" aria-label="Adicionar foto de perfil">
+            <span id="photoPlus">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </span>
+            <img id="photoPreview" alt="" hidden />
+          </button>
+          <input type="file" id="photoInput" accept="image/*" hidden />
+          <span class="photo-label">Foto de Perfil</span>
+        </div>
+
+        <div class="right-col">
+          <div class="field">
+            <label for="nascimento">Data de Nascimento</label>
+            <input id="nascimento" name="nascimento" type="text" placeholder="DD/MM/AAAA" inputmode="numeric" />
+            <p class="error" id="nascimento-error"></p>
+          </div>
+          <div class="field">
+            <label for="cep">CEP</label>
+            <input id="cep" name="cep" type="text" placeholder="Ex.: 12345-678" inputmode="numeric" />
+            <p class="error" id="cep-error"></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button type="button" class="btn" id="prevBtn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+          Anterior
+        </button>
+        <button type="submit" class="btn">
+          Próximo
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </button>
+      </div>
+    </form>
+  </main>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script src="js/script.js"></script>
+</body>
+</html>

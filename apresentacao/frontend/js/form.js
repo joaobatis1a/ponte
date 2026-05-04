@@ -17,22 +17,29 @@ let dadosFormulario = {
   contato:                ""
 };
 
-// ─── NAVEGAÇÃO ───────────────────────────────────────────────
-
 function irParaStep(numero) {
-  document.getElementById(`step-${stepAtual}`)?.classList.add("hidden");
-  stepAtual = numero;
-  document.getElementById(`step-${stepAtual}`)?.classList.remove("hidden");
+  const etapaAtualEl = document.getElementById(`step-${stepAtual}`);
+  if (etapaAtualEl) etapaAtualEl.classList.add("hidden");
 
-  document.getElementById("progress-fill").style.width = `${(stepAtual / TOTAL_STEPS) * 100}%`;
-  document.getElementById("btn-anterior").style.display = stepAtual > 1 ? "block" : "none";
-  document.getElementById("btn-proximo").textContent    = stepAtual === TOTAL_STEPS ? "Finalizar →" : "Próximo →";
+  stepAtual = numero;
+
+  const proximaEtapaEl = document.getElementById(`step-${stepAtual}`);
+  if (proximaEtapaEl) proximaEtapaEl.classList.remove("hidden");
+
+  const progressFill = document.getElementById("progress-fill");
+  if (progressFill) progressFill.style.width = `${(stepAtual / TOTAL_STEPS) * 100}%`;
+
+  const btnAnterior = document.getElementById("btn-anterior");
+  if (btnAnterior) btnAnterior.style.display = stepAtual > 1 ? "block" : "none";
+
+  const btnProximo = document.getElementById("btn-proximo");
+  if (btnProximo) btnProximo.textContent = stepAtual === TOTAL_STEPS ? "Finalizar →" : "Próximo →";
 
   if (stepAtual === 4) preencherRevisao();
-  window.scrollTo({ top: 0, behavior: "smooth" });
+  if (typeof window.scrollTo === "function") {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
 }
-
-// ─── COLETA ──────────────────────────────────────────────────
 
 function coletarDadosStep(numero) {
   if (numero === 1) {
@@ -57,8 +64,6 @@ function pegar(id) {
   const el = document.getElementById(id);
   return el ? el.value.trim() : "";
 }
-
-// ─── VALIDAÇÃO ───────────────────────────────────────────────
 
 function validarStep(numero) {
   limparErros();
@@ -99,9 +104,6 @@ function limparErros() {
   document.querySelectorAll(".campo-input.erro").forEach(el => el.classList.remove("erro"));
 }
 
-// ─── UTILIDADES ──────────────────────────────────────────────
-
-// recebe "2007-03-15" e devolve a idade atual em anos
 function calcularIdade(dataString) {
   if (!dataString) return "";
   const hoje       = new Date();
@@ -116,7 +118,6 @@ function calcularIdade(dataString) {
   return idade;
 }
 
-// preenche o card de revisão no step 4
 function preencherRevisao() {
   const container = document.getElementById("revisao-dados");
   if (!container) return;
@@ -140,6 +141,7 @@ function preencherRevisao() {
 
 function mostrarLoading(ativo) {
   const btn = document.getElementById("btn-proximo");
+  if (!btn) return;
   btn.disabled = ativo;
   btn.classList.toggle("loading", ativo);
   btn.textContent = ativo
@@ -149,12 +151,11 @@ function mostrarLoading(ativo) {
 
 function mostrarToast(mensagem, tipo = "") {
   const toast = document.getElementById("toast");
+  if (!toast) return;
   toast.textContent = mensagem;
   toast.className   = `toast ${tipo} visivel`;
   setTimeout(() => toast.classList.remove("visivel"), 3500);
 }
-
-// ─── FOTO DE PERFIL ──────────────────────────────────────────
 
 function configurarFoto() {
   const btnFoto     = document.getElementById("btn-foto");
@@ -172,6 +173,7 @@ function configurarFoto() {
 
     const reader  = new FileReader();
     reader.onload = (ev) => {
+      if (!fotoPreview || !placeholder) return;
       fotoPreview.src           = ev.target.result;
       fotoPreview.style.display = "block";
       placeholder.style.display = "none";
@@ -179,8 +181,6 @@ function configurarFoto() {
     reader.readAsDataURL(arquivo);
   });
 }
-
-// ─── VER/ESCONDER SENHA ──────────────────────────────────────
 
 function configurarVerSenha() {
   document.querySelectorAll(".btn-ver-senha").forEach(btn => {
@@ -194,8 +194,6 @@ function configurarVerSenha() {
   });
 }
 
-// ─── MÁSCARA DO CEP ──────────────────────────────────────────
-
 function configurarMascaraCEP() {
   const campoCEP = document.getElementById("campo-cep");
   if (!campoCEP) return;
@@ -206,3 +204,45 @@ function configurarMascaraCEP() {
     e.target.value = v;
   });
 }
+
+function safeAddEventListener(id, event, handler) {
+  const el = document.getElementById(id);
+  if (!el) return false;
+  el.addEventListener(event, handler);
+  return true;
+}
+
+window.addEventListener("DOMContentLoaded", () => {
+  configurarFoto();
+  configurarVerSenha();
+  configurarMascaraCEP();
+
+  const hasForm = document.getElementById("progress-fill") || document.getElementById("step-1");
+  if (hasForm) irParaStep(1);
+
+  safeAddEventListener("btn-proximo", "click", async () => {
+    if (!validarStep(stepAtual)) return;
+
+    coletarDadosStep(stepAtual);
+
+    if (stepAtual === TOTAL_STEPS) {
+      if (typeof montarJSON !== "function" || typeof enviarParaAPI !== "function") {
+        mostrarToast("Configuração do envio incompleta.", "erro");
+        return;
+      }
+
+      try {
+        const json = await montarJSON();
+        await enviarParaAPI(json);
+      } catch (e) {
+        mostrarToast(e.message || "Erro ao enviar dados.", "erro");
+      }
+    } else {
+      irParaStep(stepAtual + 1);
+    }
+  });
+
+  safeAddEventListener("btn-anterior", "click", () => {
+    if (stepAtual > 1) irParaStep(stepAtual - 1);
+  });
+});

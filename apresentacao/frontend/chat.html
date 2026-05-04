@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>P.O.N.T.E. — Conversa com o Manguelito</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/chat.css" />
+</head>
+<body>
+  <main class="card chat-card" role="main" aria-label="Cadastro com o Manguelito">
+    <!-- Topbar -->
+    <header class="topbar">
+      <button class="icon-btn" type="button" aria-label="Voltar" id="btnBack">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+      <div class="brand">
+        <img src="assets/logo-1.png" alt="Mascote P.O.N.T.E." />
+      </div>
+      <button class="icon-btn" type="button" aria-label="Fechar" id="btnClose">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+    </header>
+
+    <!-- Progress -->
+    <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="20" id="progressBar">
+      <div class="progress-fill" id="progressFill" style="width: 20%"></div>
+    </div>
+
+    <!-- Header do chat -->
+    <section class="chat-header">
+      <div class="chat-avatar">
+        <img src="assets/logo-1.png" alt="Manguelito" />
+        <span class="status-dot" aria-hidden="true"></span>
+      </div>
+      <div class="chat-meta">
+        <h1>Manguelito</h1>
+        <p><span class="typing-text" id="statusText">online · pronto pra te conhecer</span></p>
+      </div>
+    </section>
+
+    <!-- Stream de mensagens -->
+    <section class="chat-stream" id="chatStream" aria-live="polite" aria-label="Conversa">
+      <!-- mensagens injetadas via JS -->
+    </section>
+
+    <!-- Chips de atalho (ex: Sim/Não) -->
+    <div class="chips" id="chips" hidden></div>
+
+    <!-- Composer -->
+    <form class="composer" id="composer" autocomplete="off">
+      <input
+        id="msgInput"
+        type="text"
+        placeholder="Escreve aqui pro Manguelito…"
+        autocomplete="off"
+        maxlength="500"
+        aria-label="Sua mensagem"
+      />
+      <button type="submit" class="send-btn" aria-label="Enviar mensagem" id="sendBtn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+      </button>
+    </form>
+
+    <div class="hint" id="hint">Dica: pode falar do teu jeito 🦀 o Manguelito entende.</div>
+  </main>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script>console.log('[chat.html] iniciando carregamento de scripts');</script>
+  <script src="js/form.js"></script>
+  <script>console.log('[chat.html] form.js carregado');</script>
+  <script src="js/api.js"></script>
+  <script>console.log('[chat.html] api.js carregado - dispararParaOSheets disponível:', typeof dispararParaOSheets);</script>
+  <script src="js/chat.js"></script>
+  <script>console.log('[chat.html] chat.js carregado');</script>
+</body>
+</html>

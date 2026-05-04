@@ -1,0 +1,219 @@
+/* ============================================================
+   P.O.N.T.E. — Desktop Layout (telas de formulário 1–4 + login)
+   Card proporcional e equilibrado. Aplicado a partir de 900px.
+   Mobile permanece intocado.
+   ============================================================ */
+
+@media (min-width: 900px) {
+  html, body { min-height: 100vh; }
+
+  body {
+    background:
+      radial-gradient(circle at 12% 18%, rgba(232, 99, 43, 0.14) 0, transparent 38%),
+      radial-gradient(circle at 88% 82%, rgba(244, 162, 97, 0.18) 0, transparent 42%),
+      linear-gradient(135deg, #fff7ed 0%, #ffe7d1 100%);
+    background-attachment: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px 24px;
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: "P.O.N.T.E.";
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-12deg);
+    font-family: "Nunito", sans-serif;
+    font-weight: 900;
+    font-size: clamp(140px, 16vw, 240px);
+    color: rgba(232, 99, 43, 0.045);
+    letter-spacing: 0.05em;
+    pointer-events: none;
+    z-index: 0;
+    white-space: nowrap;
+    user-select: none;
+  }
+
+  /* ========= CARD COMPACTO ========= */
+  .card {
+    position: relative;
+    z-index: 1;
+    max-width: 640px !important;
+    width: 100%;
+    margin: 0 auto;
+    padding: 32px 40px 36px !important;
+    border-radius: 24px;
+    background: rgba(255, 252, 248, 0.97);
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(232, 99, 43, 0.10);
+    box-shadow:
+      0 20px 50px -25px rgba(232, 99, 43, 0.30),
+      0 6px 18px -10px rgba(0, 0, 0, 0.10);
+  }
+
+  /* ========= TOPBAR ========= */
+  .brand img,
+  .brand .logo,
+  .brand svg {
+    width: 150px !important;
+    height: 150px !important;
+  }
+
+  .brand .brand-name,
+  .brand span {
+    font-size: 11px !important;
+    letter-spacing: 0.18em !important;
+  }
+
+  .icon-btn svg { width: 24px; height: 24px; }
+
+  /* ========= PROGRESS ========= */
+  .progress,
+  .progress-bar,
+  [role="progressbar"] {
+    height: 8px !important;
+    margin-top: 18px !important;
+    border-radius: 999px;
+  }
+
+  /* ========= TÍTULO ========= */
+  h1, .title {
+    font-size: 1.85rem !important;
+    line-height: 1.15 !important;
+    margin-top: 22px !important;
+  }
+
+  .subtitle, .lead, h1 + p {
+    font-size: 0.98rem !important;
+    margin-top: 8px !important;
+    max-width: 520px;
+  }
+
+  /* ========= FORM EM GRID 2 COLUNAS ========= */
+  form {
+    margin-top: 22px !important;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px 20px;
+  }
+
+  form > .full,
+  form > .actions,
+  form > .row-actions,
+  form > .form-actions,
+  form > h2,
+  form > h3,
+  form > .section-title,
+  form > .photo-row,
+  form > .row,
+  form > fieldset,
+  form > .captcha,
+  form > .error {
+    grid-column: 1 / -1;
+  }
+
+  /* ========= LABELS / INPUTS ========= */
+  label {
+    font-size: 0.88rem !important;
+    margin-bottom: 6px !important;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  input[type="tel"],
+  input[type="number"],
+  input[type="date"],
+  select,
+  textarea {
+    padding: 11px 14px !important;
+    font-size: 0.98rem !important;
+    border-radius: 12px !important;
+  }
+
+  textarea { min-height: 96px; }
+
+  /* ========= LINHA FOTO + CAMPOS (tela 1) ========= */
+  .row,
+  .photo-row,
+  .foto-grupo {
+    display: grid !important;
+    grid-template-columns: 120px 1fr;
+    gap: 18px;
+    align-items: start;
+  }
+
+  .photo-btn,
+  .avatar-btn,
+  .row .photo-col .photo-btn {
+    width: 110px !important;
+    height: 110px !important;
+  }
+
+  /* ========= BOTÕES DE AÇÃO ========= */
+  .actions,
+  .row-actions,
+  .form-actions {
+    margin-top: 20px !important;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+
+  .actions button,
+  .form-actions button,
+  .btn {
+    padding: 12px 18px !important;
+    font-size: 0.98rem !important;
+    border-radius: 14px !important;
+  }
+
+  /* Quando há um único botão (ex: "Finalizar Cadastro" no login) */
+  .actions.single,
+  .form-actions.single {
+    grid-template-columns: minmax(220px, 320px);
+    justify-content: center;
+  }
+
+  /* ========= CAPTCHA — alinhado à direita ========= */
+  .captcha { margin-left: 0 !important; margin-right: 0 !important; }
+
+  /* ========= TELA FORMACOES — cards/lista ========= */
+  .formacao-card,
+  .form-item,
+  .lista-formacoes > * {
+    padding: 18px !important;
+    border-radius: 16px !important;
+  }
+
+  .lista-formacoes {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+
+  /* ========= TELA PRONTO — resumo ========= */
+  .resumo,
+  .summary,
+  .review {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px 24px;
+  }
+
+  .resumo .full,
+  .summary .full { grid-column: 1 / -1; }
+}
+
+/* Telas grandes — leve folga, sem exagero */
+@media (min-width: 1280px) {
+  .card {
+    max-width: 720px !important;
+    padding: 36px 48px 40px !important;
+  }
+  h1, .title { font-size: 2rem !important; }
+}
