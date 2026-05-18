@@ -5,7 +5,7 @@ from datetime import date, datetime
 from enum import Enum
 
 
-# --- Enums ---
+
 
 class Carreira(str, Enum):
     tecnologia = "tecnologia"
@@ -30,13 +30,13 @@ class AreaCarreira(str, Enum):
 
 
 class NivelEnum(str, Enum):
-    iniciante = "iniciante"          # 0 - 499 XP
-    explorador = "explorador"        # 500 - 1499 XP
-    desenvolvedor = "desenvolvedor"  # 1500 - 3499 XP
-    especialista = "especialista"    # 3500+ XP
+    iniciante = "iniciante"          
+    explorador = "explorador"       
+    desenvolvedor = "desenvolvedor"  
+    especialista = "especialista"    
 
 
-# --- Sub-documentos ---
+
 
 class Formacao(BaseModel):
     instituicao: Optional[str] = None
@@ -46,7 +46,11 @@ class Formacao(BaseModel):
     fim: Optional[date] = None
 
 
-class Habilidade(BaseModel):
+class HardSkill(BaseModel):
+    nome: str
+    origem: str = "manguelito"
+
+class SoftSkill(BaseModel):
     nome: str
     origem: str = "manguelito"
 
@@ -57,20 +61,19 @@ class Emblema(BaseModel):
     conquistado_em: datetime = datetime.utcnow()
 
 
-# --- Documento principal ---
 
 class Jovem(Document):
-    # Referência ao User (autenticação)
+
     user_id: str
 
-    # Dados pessoais (Figma - Passo 1)
+   
     nome: str
     sobrenome: str
     foto_perfil: Optional[str] = None
     data_nascimento: Optional[date] = None
     cep: Optional[str] = None
 
-    # Formações (Figma - Passo 3)
+   
     formacoes: List[Formacao] = []
 
     # Carreira (HU03)
@@ -82,14 +85,16 @@ class Jovem(Document):
     nivel: NivelEnum = NivelEnum.iniciante
     emblemas: List[Emblema] = []
 
-    # Habilidades via Manguelito (HU02)
-    habilidades: List[Habilidade] = []
 
-    # Manguelito chat (HU02)
+    hard_skills: List[HardSkill] = []
+    soft_skills: List[SoftSkill] = []
+
+
+    
     mensagens_semana: int = 0
     ultima_resetagem_mensagens: Optional[datetime] = None
 
-    # Controle
+    
     ativo: bool = True
     criado_em: datetime = datetime.utcnow()
     atualizado_em: datetime = datetime.utcnow()
