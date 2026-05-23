@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>P.O.N.T.E. — Detalhes do Desafio</title>
+  <link rel="stylesheet" href="css/desafio.css">
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=DM+Sans:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+
+
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <img src="assets/logo-1.png" alt="P.O.N.T.E. logo" class="logo-img">
+    </div>
+ 
+    <div class="nav-section-label">Menu</div>
+ 
+    <div class="nav-item active" data-page="home">
+      <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      Home
+    </div>
+
+    <div class="nav-item" data-page="vagas">
+      <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2"><rect x="3" y="7" width="5" height="14" rx="1"/><rect x="9.5" y="3" width="5" height="18" rx="1"/><rect x="16" y="10" width="5" height="11" rx="1"/></svg>
+      Vagas
+    </div>
+ 
+    <div class="nav-item" data-page="mensagens">
+      <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      Mensagens
+      <span class="nav-badge" id="msg-badge">3</span>
+    </div>
+ 
+ 
+    <div class="sidebar-spacer"></div>
+ 
+    <div class="sidebar-user">
+      <div class="user-avatar">MA</div>
+      <div class="user-info">
+        <div class="name">Maria A.</div>
+        <div class="lvl">⚡ LVL 4 · 2.450 XP</div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ═══════════════════════════════════════════════
+       MAIN
+  ═══════════════════════════════════════════════ -->
+  <div class="main">
+
+    <!-- Topbar -->
+    <div class="topbar">
+      <a href="/ponte-mvp/frontend/feed.html" class="back-btn" aria-label="Voltar">
+        <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      </a>
+      <nav class="breadcrumb">
+        <a href="/ponte-mvp/frontend/feed.html">Home</a>
+        <span class="bc-sep">›</span>
+        <span class="bc-current" data-placeholder="challenge-title-short">Detalhes do desafio</span>
+      </nav>
+
+      <div class="topbar-actions">
+        <button class="icon-btn" id="btn-save" aria-label="Salvar desafio" title="Salvar">
+          <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </button>
+        <button class="icon-btn" aria-label="Compartilhar" title="Compartilhar">
+          <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- ───── Scrollable content ───── -->
+    <div class="content">
+      <div class="detail-layout">
+
+        <!-- ══════════════════════════════════
+             COLUNA PRINCIPAL (esquerda)
+        ══════════════════════════════════ -->
+        <div class="col-main">
+
+          <!-- Hero card do desafio -->
+          <div class="hero-card desafio">
+            <div class="type-pill" data-placeholder="challenge-type">Desafio</div>
+
+            <div class="hero-header">
+              <div class="company-row">
+                <div class="company-logo" data-placeholder="company-logo-initials" style="color: var(--orange);">SS</div>
+                <div>
+                  <div class="company-name" data-placeholder="company-name">Solvex Solutions</div>
+                  <div class="company-location" data-placeholder="company-location">Olinda · PE</div>
+                </div>
+              </div>
+              <div class="hero-meta">
+                <div class="meta-deadline">
+                  <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                  <span data-placeholder="challenge-deadline">20 Jun</span>
+                </div>
+                <div class="meta-xp desafio-xp" data-placeholder="challenge-xp">+550 XP</div>
+              </div>
+            </div>
+
+            <div class="hero-tags">
+              <!-- data-placeholder="challenge-tags" — renderizar via JS -->
+              <span class="tag desafio-tag">Figma</span>
+              <span class="tag desafio-tag">Storytelling</span>
+              <span class="tag level-tag">De Nível 1–2</span>
+            </div>
+
+            <h1 class="challenge-title" data-placeholder="challenge-title">
+              UX Design: <span class="title-highlight">E-commerce de Artesanato em Recife</span>
+            </h1>
+          </div>
+
+          <!-- ── O Desafio ── -->
+          <section class="detail-section" id="section-description">
+            <h2 class="section-heading">
+              <span class="section-icon">🎯</span> O Desafio
+            </h2>
+            <div class="prose" data-placeholder="challenge-description">
+              <p>Um mercado de artesanato em Recife precisa de uma pont digital. Seu objetivo é projetar uma plataforma que conecta artesãos locais com o mercado internacional, mantendo a identidade cultural da região.</p>
+              <p>Você deverá criar o fluxo principal de checkout, focando em como contar a história do artesão e o impacto das suas artes antes do pagamento, agregando valor emocional ao produto final.</p>
+            </div>
+          </section>
+
+          <!-- ── Requisitos Mínimos ── -->
+          <section class="detail-section" id="section-requirements">
+            <h2 class="section-heading">
+              <span class="section-icon">📋</span> Requisitos Mínimos
+            </h2>
+            <!-- data-placeholder="challenge-requirements" — lista injetável -->
+            <ul class="req-list">
+              <li class="req-item">
+                <span class="req-icon desafio">✦</span>
+                <span>Domínio de <strong>Figma</strong> para prototipagem navegável</span>
+              </li>
+              <li class="req-item">
+                <span class="req-icon desafio">✦</span>
+                <span>Capacidade de <strong>Storytelling</strong> visual e textual</span>
+              </li>
+              <li class="req-item">
+                <span class="req-icon desafio">✦</span>
+                <span>Nível 1 a 2 na plataforma P.O.N.T.E.</span>
+              </li>
+            </ul>
+          </section>
+
+          <!-- ── Resumo da Entrega ── -->
+          <section class="detail-section" id="section-deliverables">
+            <h2 class="section-heading">
+              <span class="section-icon">📦</span> Resumo da Entrega
+            </h2>
+            <!-- data-placeholder="challenge-deliverables" -->
+            <ul class="deliverable-list">
+              <li>
+                <span class="deliv-bullet">›</span>
+                Protótipo navegável (Link do Figma)
+              </li>
+              <li>
+                <span class="deliv-bullet">›</span>
+                Estudo de caso racional do design <em>(.pdf)</em>
+              </li>
+              <li>
+                <span class="deliv-bullet optional">›</span>
+                Vídeo de até 2 min explicando a solução <em>(.mp4 — OPCIONAL)</em>
+              </li>
+            </ul>
+          </section>
+
+          <!-- ── Área futura do formulário de submissão ── -->
+          <!-- IMPORTANTE: este bloco é o ponto de acoplagem do formulário de envio.
+               O integrador deve injetar o <form id="submission-form"> aqui.
+               Não remover nem mover este comentário ou o wrapper. -->
+          <section class="detail-section submission-anchor" id="section-submission-form" aria-label="Formulário de submissão">
+            <!-- [[SUBMISSION_FORM_INJECTION_POINT]] -->
+            <div class="submission-placeholder">
+              <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+              <span>Área de submissão da solução</span>
+            </div>
+          </section>
+
+        </div><!-- /col-main -->
+
+        <!-- ══════════════════════════════════
+             COLUNA LATERAL (direita)
+        ══════════════════════════════════ -->
+        <div class="col-side">
+
+          <!-- Recompensas -->
+          <div class="side-card rewards-card">
+            <div class="side-card-title">Recompensas</div>
+            <div class="rewards-grid">
+              <div class="reward-item">
+                <div class="reward-icon xp-icon">⚡</div>
+                <div class="reward-label">Experiência</div>
+                <div class="reward-value xp-value" data-placeholder="reward-xp">+550 XP</div>
+                <div class="reward-sub">De Nível 1–2</div>
+              </div>
+              <div class="reward-item">
+                <div class="reward-icon badge-icon">🏅</div>
+                <div class="reward-label">Emblema</div>
+                <div class="reward-value badge-value" data-placeholder="reward-badge">Designer Iniciante</div>
+                <div class="reward-sub" data-placeholder="reward-badge-rarity">No PP</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Dica do Manguelito -->
+          <div class="side-card tip-card">
+            <div class="tip-header">
+              <div class="tip-mascot" aria-label="Mascote Manguelito">🌿</div>
+              <div class="tip-title-row">
+                <span class="tip-eyebrow">DICA DO</span>
+                <span class="tip-name" data-placeholder="mascot-name">Manguelito</span>
+              </div>
+            </div>
+            <p class="tip-text" data-placeholder="mascot-tip">
+              "Ei você! Novos aqui? O fluxo de checkout não é só botões, tá? Tem que ter navegação acessível pro produto final. E lembre que o avaliador vai querer ver o fluxo de razões, é claro, um visual atraente. <strong>Pague mais do seu cuidado visual!</strong>"
+            </p>
+          </div>
+
+          <!-- Sobre a empresa -->
+          <div class="side-card company-card">
+            <div class="side-card-title">Sobre a empresa</div>
+            <div class="company-profile-row">
+              <div class="company-logo-lg" data-placeholder="company-logo-initials" style="color: var(--orange);">SS</div>
+              <div>
+                <div class="cp-name" data-placeholder="company-name">Solvex Solutions</div>
+                <div class="cp-location" data-placeholder="company-location">Olinda · PE</div>
+              </div>
+            </div>
+            <p class="company-bio" data-placeholder="company-bio">
+              Uma startup que valoriza raízes pernambucanas, que visa elevar a criação local, elevando o mercado de trabalho em Pernambuco.
+            </p>
+            <a href="#" class="ver-empresa-btn" data-placeholder="company-profile-url">
+              Ver Empresa
+              <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+
+          <!-- Participantes -->
+          <div class="side-card participants-card">
+            <div class="side-card-title">Participantes</div>
+            <div class="participants-row">
+              <!-- data-placeholder="participant-avatars" — injetar avatares -->
+              <div class="avatar-stack">
+                <div class="av" style="background: #e07a3a;">JM</div>
+                <div class="av" style="background: #2a7d4f;">PL</div>
+                <div class="av" style="background: #7a3aac;">CR</div>
+                <div class="av av-more" data-placeholder="extra-participants-count">+18</div>
+              </div>
+              <span class="part-label" data-placeholder="participant-count">21 participando</span>
+            </div>
+          </div>
+
+        </div><!-- /col-side -->
+
+      </div><!-- /detail-layout -->
+    </div><!-- /content -->
+
+    <!-- ═══════════════════════════════════════════════
+         RODAPÉ FIXO — Ações Primárias
+         IMPORTANTE: botões com IDs estáveis para futura
+         lógica de estado (aceitar/enviar/já aceito).
+    ═══════════════════════════════════════════════ -->
+    <div class="action-bar" id="action-bar" role="toolbar" aria-label="Ações do desafio">
+      <div class="action-bar-inner">
+        <div class="action-bar-info">
+          <span class="ab-challenge-name" data-placeholder="challenge-title-short">UX Design: E-commerce Artesanato</span>
+          <span class="ab-meta">
+            <span class="ab-xp" data-placeholder="challenge-xp">+550 XP</span>
+            <span class="ab-sep">·</span>
+            <span class="ab-deadline" data-placeholder="challenge-deadline">Prazo: 20 Jun</span>
+          </span>
+        </div>
+        <div class="action-btns">
+          <!-- Estado 1: ainda não aceitou -->
+          <button class="btn-accept" id="btn-accept" data-challenge-id="{{challenge-id}}" aria-label="Aceitar este desafio">
+            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+            Aceitar Desafio
+          </button>
+          <!-- Estado 2: aceitou, pronto para enviar (oculto por padrão) -->
+          <button class="btn-submit" id="btn-submit" data-challenge-id="{{challenge-id}}" aria-label="Enviar solução do desafio" hidden>
+            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+            Enviar Resolução
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /main -->
+
+  <script src="desafio.js"></script>
+</body>
+</html>
