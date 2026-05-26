@@ -8,11 +8,11 @@
   // Dados de fallback caso o backend do Pedro esteja fora do ar
   const fallbackData = [
     {
-      tipo: 'desafio', empresa: 'Lua Logísticas', logo: 'LUA', cor_logo: '#f5a670', local: 'Recife · PE',
-      data: '20 MAR', xp: '+800 XP', tags: ['DEV', 'LVL. 3-5'],
-      titulo: 'Otimização de Rotas Marítimas para Transporte',
-      desc: '350 rotas diárias entre Recife e Bahia aguardam otimização com algoritmos inteligentes de roteamento marítimo.',
-      participantes: '+52 Participando'
+      tipo: 'desafio', empresa: 'Solvex Solutions', logo: 'SS', cor_logo: '#f5a670', local: 'Olinda · PE',
+      data: '20 JUN', xp: '+550 XP', tags: ['UX', 'LVL. 1-2'],
+      titulo: 'UX Design: E-commerce de Artesanato em Recife',
+      desc: 'Um e-commerce de artesanato em Recife aguarda um fluxo de checkout que transforma a história do artesão em motivo de compra.',
+      participantes: '+20 Participando'
     },
     {
       tipo: 'curso', empresa: 'DesignLab Nordeste', logo: 'UX', cor_logo: '#2a7d4f', local: 'Remoto',
@@ -35,9 +35,9 @@
     const tagsHtml = item.tags.map(tag => `<span class="tag">${tag}</span>`).join('');
     
     // Pequena variação visual dependendo do tipo
-    let actionBtn = '<button class="go-btn">Participar ›</button>';
-    if (item.tipo === 'curso') actionBtn = '<button class="go-btn go-curso">Matricular ›</button>';
-    if (item.tipo === 'evento') actionBtn = '<button class="go-btn go-evento">Inscrever-se ›</button>';
+   let actionBtn = `<button class="go-btn" onclick="window.location.href='/ponte-mvp/frontend/desafio.html'">Participar ›</button>`;
+  if (item.tipo === 'curso') actionBtn = `<button class="go-btn go-curso" onclick="window.location.href='/ponte-mvp/frontend/desafio.html'">Matricular ›</button>`;
+  if (item.tipo === 'evento') actionBtn = `<button class="go-btn go-evento" onclick="window.location.href='/ponte-mvp/frontend/desafio.html'">Inscrever-se ›</button>`;
 
     return `
       <div class="card ${item.tipo}" data-type="${item.tipo}">
