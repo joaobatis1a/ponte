@@ -12,7 +12,7 @@ router = APIRouter()
  
 GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 GROQ_API_URL = "https://api.groq.com/openai/v1/chat/completions"
-GROQ_MODEL = os.getenv("GROQ_MODEL", "llama3-8b-8192")
+GROQ_MODEL = os.getenv("GROQ_MODEL", "llama-3.1-8b-instant")
  
 LIMITE_SEMANAL = 10
  
@@ -59,6 +59,7 @@ async def enviar_mensagem(dados: ChatMensagemSchema):
         "max_tokens": 512,
     }
  
+    print(f"\n[Chat-Debug] Enviando mensagem para a Groq (Modelo: {GROQ_MODEL})...")
     try:
         async with httpx.AsyncClient(timeout=20.0) as client:
             response = await client.post(
@@ -70,12 +71,26 @@ async def enviar_mensagem(dados: ChatMensagemSchema):
                 },
             )
     except httpx.RequestError as e:
+        print(f"[Chat-Debug] ERRO DE REDE: Falha ao contatar a API da Groq: {str(e)}")
         raise HTTPException(status_code=502, detail=f"Erro ao chamar a IA: {str(e)}")
  
     if response.status_code != 200:
+        print(f"[Chat-Debug] A GROQ RECUSOU A REQUISIÇÃO! Status: {response.status_code} | Detalhe: {response.text}")
         raise HTTPException(status_code=502, detail=f"Erro da IA: {response.text}")
  
     resposta_ia = response.json()["choices"][0]["message"]["content"].strip()
+    print(f"[Chat-Debug] Resposta gerada pela Groq com sucesso: {resposta_ia}")
+
+    print(f"[Chat-Debug] Acionando injeção de skills no BD para o Jovem: {dados.jovem_id}")
+ 
+    resposta_ia = response.json()["choices"][0]["message"]["content"].strip()
+    print(f"\n[Chat-Debug] Resposta gerada pela Groq: {resposta_ia}")
+
+    print(f"[Chat-Debug] Acionando injeção de skills no BD para o Jovem: {dados.jovem_id}")
+    await injetar_skills(
+        dados.jovem_id,
+        SkillsFromManguelito(hard_skills=[], soft_skills=[]),
+    )
  
 
     await injetar_skills(

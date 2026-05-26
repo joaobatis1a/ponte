@@ -83,6 +83,7 @@
       if (!response.ok) throw new Error('Backend indisponível');
       
       const data = await response.json();
+      console.log("\n[Feed-Debug] Dados brutos recebidos da API:", data);
       
       // Se vier vazio, exibe mensagem
       if (!data || data.length === 0) {

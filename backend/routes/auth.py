@@ -12,10 +12,13 @@ class LoginSchema(BaseModel):
 
 @router.post("/cadastro/jovem")
 async def cadastro_jovem(dados: CadastroJovemSchema):
+    print(f"\n[Auth-Debug] Recebendo requisição de cadastro para: {dados.email}")
     try:
         resultado = await cadastrar_jovem(dados)
+        print(f"[Auth-Debug] Cadastro concluído no banco. UserID: {resultado['user_id']}")
         return resultado
     except ValueError as e:
+        print(f"[Auth-Debug] Erro no cadastro: {e}")
         raise HTTPException(status_code=400, detail=str(e))
 
 

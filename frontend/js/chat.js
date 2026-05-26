@@ -11,7 +11,7 @@
   const toastEl = document.getElementById('toast');
 
   // URL do Backend do Pedro (Ajuste a porta/URL conforme o ambiente de vocês)
-  const API_CHAT_URL = 'http://127.0.0.1:8000/chat'; 
+  const API_CHAT_URL = 'http://127.0.0.1:8000/chat/mensagem';
 
   // --- Funções de UI ---
   function nowHM() {
@@ -73,8 +73,7 @@
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ 
           mensagem: userMessage,
-          // Jovem_id simulado. Na real, tu puxa do localStorage do login.
-          jovem_id: localStorage.getItem('ponte_user_id') || 'teste_123' 
+          jovem_id: localStorage.getItem('ponte_jovem_id') 
         })
       });
 

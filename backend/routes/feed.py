@@ -1,26 +1,15 @@
 from fastapi import APIRouter, HTTPException, Query
-from pydantic import BaseModel
 from typing import Optional
 from datetime import datetime
- 
+
 from beanie import PydanticObjectId
 from backend.models.task_model import Desafio, StatusDesafio
 from backend.models.jovem_model import Jovem
- 
+
+from backend.services.submissao_service import criar_submissao, CriarSubmissaoSchema
+
 router = APIRouter()
- 
- 
 
- 
-class SubmissaoSchema(BaseModel):
-    jovem_id: str
-    desafio_id: str
-    link: Optional[str] = None
-    texto: Optional[str] = None
- 
- 
-
- 
 @router.get("/desafios")
 async def listar_desafios(
     carreira: Optional[str] = Query(None),
@@ -29,6 +18,7 @@ async def listar_desafios(
     limit: int = Query(20, ge=1, le=100),
     skip: int = Query(0, ge=0),
 ):
+    print("\n[Feed-Debug] Requisição GET /desafios recebida. Buscando no Mongo...")
     filtros = {"status": StatusDesafio.ativo}
  
     if carreira:
@@ -61,16 +51,14 @@ async def listar_desafios(
             for d in desafios
         ],
     }
- 
- 
 
- 
 @router.post("/submissao")
-async def submeter_resolucao(dados: SubmissaoSchema):
-    if not dados.link and not dados.texto:
+async def submeter_resolucao(dados: CriarSubmissaoSchema):
+    print(f"\n[Submissao-Debug] Requisição POST recebida. Jovem: {dados.jovem_id} | Desafio: {dados.desafio_id}")
+    if not dados.link_externo and not dados.descricao:
         raise HTTPException(
             status_code=400,
-            detail="Informe ao menos um campo: 'link' ou 'texto'",
+            detail="Informe ao menos um campo: 'link_externo' ou 'descricao'",
         )
  
     try:
@@ -91,12 +79,14 @@ async def submeter_resolucao(dados: SubmissaoSchema):
  
     if desafio.status != StatusDesafio.ativo:
         raise HTTPException(status_code=400, detail="Este desafio não está mais ativo")
+    
+    print(f"[Submissao-Debug] Validações aprovadas. Acionando submissao_service para persistência no MongoDB.")
  
-    return {
-        "message": "Submissão recebida com sucesso!",
-        "jovem_id": dados.jovem_id,
-        "desafio_id": dados.desafio_id,
-        "link_enviado": dados.link,
-        "texto_enviado": bool(dados.texto),
-        "submetido_em": datetime.utcnow().isoformat(),
-    }
+    try:
+        resultado = await criar_submissao(dados)
+        print(f"[Submissao-Debug] Submissão salva com sucesso no BD! ID: {resultado['submissao_id']}")
+    except ValueError as e:
+        print(f"[Submissao-Debug] Erro no serviço: {e}")
+        raise HTTPException(status_code=400, detail=str(e))
+ 
+    return resultado

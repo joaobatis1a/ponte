@@ -110,31 +110,58 @@ function strength(s) {
 }
 
 function handleNext() {
+  console.log(`[Cadastro-Debug] Botão 'Próximo' clicado. Step atual: ${state.step}`);
+
   if (state.step === 0) {
     state.errors = validateBasico();
-    if (Object.keys(state.errors).length) { render(); return showToast('Confere os campos destacados', 'error'); }
+    if (Object.keys(state.errors).length) { 
+      console.warn('[Cadastro-Debug] Erro na validação básica:', state.errors);
+      render(); return showToast('Confere os campos destacados', 'error'); 
+    }
     state.step = 1; state.errors = {};
-  } else if (state.step === 1) {
+    console.log('[Cadastro-Debug] Avançou para Step 1');
+  } 
+  else if (state.step === 1) {
     state.errors = validateAuth();
-    if (Object.keys(state.errors).length) { render(); return showToast('Confere os campos destacados', 'error'); }
+    if (Object.keys(state.errors).length) { 
+      console.warn('[Cadastro-Debug] Erro na validação auth:', state.errors);
+      render(); return showToast('Confere os campos destacados', 'error'); 
+    }
     state.step = 2; state.errors = {};
-  } else if (state.step === 2) {
+    console.log('[Cadastro-Debug] Avançou para Step 2');
+  } 
+  else if (state.step === 2) {
     const d = state.draft;
     const algum = d.instituicao || d.cidade || d.curso || d.inicio || d.fim;
     if (algum) {
       state.errors = validateFormacaoDraft();
-      if (Object.keys(state.errors).length) { render(); return showToast('Preencha corretamente ou limpe os campos.', 'error'); }
+      if (Object.keys(state.errors).length) { 
+        console.warn('[Cadastro-Debug] Erro no draft de formação:', state.errors);
+        render(); return showToast('Preencha corretamente ou limpe os campos.', 'error'); 
+      }
       state.formacoes.push({...d});
+      console.log('[Cadastro-Debug] Formação salva no draft:', d);
       state.draft = { instituicao:'', cidade:'', curso:'', inicio:'', fim:'' };
     }
     state.step = 3; state.errors = {};
-  } else {
-    showToast('Bora conversar com o Manguelito! 🦀', 'success');
-    setTimeout(() => alert('Cadastro concluído com sucesso!'), 700);
-    return;
+    console.log('[Cadastro-Debug] Avançou para Step 3 (Revisão final)');
+  } 
+  else {
+    // ESTE É O MOMENTO DA VERDADE
+    console.log('\n[Cadastro-Debug] SOLICITANDO ENVIO FINAL!');
+    
+    if(window.PONTE && window.PONTE.enviar) {
+      console.log('[Cadastro-Debug] Objeto window.PONTE encontrado. Repassando state...');
+      window.PONTE.enviar(state);
+    } else {
+      console.error('[Cadastro-Debug] ERRO FATAL: window.PONTE não existe! O arquivo api.js não carregou direito.');
+      alert('ERRO: API não carregada. Pressione Ctrl+F5 e tente novamente.');
+    }
+    return; // Para não rodar o render() atoa
   }
   render();
 }
+
 function handlePrev() {
   if (state.step === 0) return showToast('Já estamos no início 🙂');
   state.step--;
