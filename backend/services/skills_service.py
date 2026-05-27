@@ -1,38 +1,32 @@
 from beanie import PydanticObjectId
-from backend.models.jovem_model import Jovem, HardSkill, SoftSkill
+from backend.models.jovem_model import Jovem, Habilidade
 from pydantic import BaseModel
 from typing import List
-
-
-# --- Schemas de entrada ---
+from datetime import datetime
 
 class SkillsFromManguelito(BaseModel):
-    hard_skills: List[str] = []
-    soft_skills: List[str] = []
-
-
-# --- Serviços ---
+    habilidades: List[str] = []
 
 async def injetar_skills(jovem_id: str, skills: SkillsFromManguelito) -> dict:
     jovem = await Jovem.get(PydanticObjectId(jovem_id))
     if not jovem:
         raise ValueError("Jovem não encontrado")
 
-    await jovem.update({
-        "$addToSet": {
-            "hard_skills": {
-                "$each": [{"nome": nome, "origem": "manguelito"} for nome in skills.hard_skills]
-            },
-            "soft_skills": {
-                "$each": [{"nome": nome, "origem": "manguelito"} for nome in skills.soft_skills]
-            }
-        }
-    })
+    novas_habilidades = [
+        Habilidade(nome=nome).model_dump() for nome in skills.habilidades[:3]
+    ]
 
-    jovem_atualizado = await Jovem.get(PydanticObjectId(jovem_id))
+    if novas_habilidades:
+        await jovem.update({
+            "$addToSet": {
+                "habilidades": {"$each": novas_habilidades}
+            },
+            "$set": {
+                "atualizado_em": datetime.utcnow()
+            }
+        })
 
     return {
-        "message": "Skills atualizadas com sucesso",
-        "hard_skills": [s.nome for s in jovem_atualizado.hard_skills],
-        "soft_skills": [s.nome for s in jovem_atualizado.soft_skills]
+        "message": "Habilidades atualizadas com sucesso",
+        "habilidades_adicionadas": skills.habilidades[:3]
     }

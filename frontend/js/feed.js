@@ -1,120 +1,126 @@
-(() => {
+(function () {
   'use strict';
 
-  // URL da API do Pedro (ajuste a porta conforme o servidor de vocês)
-  const API_FEED_URL = 'http://127.0.0.1:8000/feed';
-  const grid = document.getElementById('cards-grid');
+  const API_FEED_URL = 'http://127.0.0.1:8000/feed/desafios';
+  const jovemId = localStorage.getItem('ponte_jovem_id');
 
-  // Dados de fallback caso o backend do Pedro esteja fora do ar
-  const fallbackData = [
-    {
-      tipo: 'desafio', empresa: 'Solvex Solutions', logo: 'SS', cor_logo: '#f5a670', local: 'Olinda · PE',
-      data: '20 JUN', xp: '+550 XP', tags: ['UX', 'LVL. 1-2'],
-      titulo: 'UX Design: E-commerce de Artesanato em Recife',
-      desc: 'Um e-commerce de artesanato em Recife aguarda um fluxo de checkout que transforma a história do artesão em motivo de compra.',
-      participantes: '+20 Participando'
-    },
-    {
-      tipo: 'curso', empresa: 'DesignLab Nordeste', logo: 'UX', cor_logo: '#2a7d4f', local: 'Remoto',
-      data: '8 semanas', xp: '+400 XP', tags: ['UX RESEARCH', 'LVL. 1-3'],
-      titulo: 'UX Research na Prática: do Zero ao Insight',
-      desc: 'Aprenda a conduzir entrevistas, criar personas e validar hipóteses de produto com usuários reais do Nordeste.',
-      participantes: '65% preenchido'
-    },
-    {
-      tipo: 'evento', empresa: 'Porto Digital', logo: 'HKT', cor_logo: '#c45e20', local: 'Recife · PE',
-      data: '05 ABR', xp: '+1.000 XP', tags: ['HACKATHON', 'PRESENCIAL'],
-      titulo: 'Hackathon Nordeste 2025: Inovação em Logística',
-      desc: '48h de desafio presencial no Porto Digital. Resolva problemas reais de logística costeira com equipes multidisciplinares.',
-      participantes: '+120 Inscritos'
+  // 1. Busca os dados reais do perfil
+  async function loadUserProfile() {
+    if (!jovemId) return;
+    try {
+      const res = await fetch(`http://127.0.0.1:8000/profile/${jovemId}`);
+      if (!res.ok) throw new Error('Perfil indisponível');
+      
+      const data = await res.json();
+      
+      // Mapeamento exato com o seu feed.html
+      const txtNome = document.getElementById('sidebar-nome');
+      const txtNivel = document.getElementById('sidebar-nivel');
+      const txtXp = document.getElementById('sidebar-xp');
+
+      if (txtNome) txtNome.textContent = `${data.nome} ${data.sobrenome}`;
+      if (txtNivel) txtNivel.textContent = `Lvl. ${data.nivel || 'Iniciante'}`;
+      if (txtXp) txtXp.textContent = `${data.xp || 0} XP`;
+      
+    } catch (error) {
+      console.warn('[Feed-Debug] Não foi possível carregar dados do usuário. Mantendo interface padrão.', error);
     }
-  ];
+  }
 
-  // Função para montar o HTML de cada card
+  // 2. Busca e renderiza os desafios do MongoDB
+  async function loadFeed() {
+    try {
+      const response = await fetch(API_FEED_URL);
+      if (!response.ok) throw new Error('Erro na API de Feed');
+      
+      const rawData = await response.json();
+      const desafiosArray = rawData.desafios || [];
+
+      // CORREÇÃO: Buscando pelo ID correto do HTML (cards-grid)
+      const container = document.getElementById('cards-grid');
+      
+      if (!container) {
+          console.error("[Feed-Debug] A div 'cards-grid' não foi encontrada no HTML!");
+          return;
+      }
+
+      container.innerHTML = ''; // Limpa a tela
+      
+      if (desafiosArray.length === 0) {
+          container.innerHTML = '<p style="text-align:center; padding: 20px; color: #666;">Nenhum desafio encontrado no banco de dados.</p>';
+          return;
+      }
+
+      desafiosArray.forEach(item => {
+        container.innerHTML += renderCard(item);
+      });
+
+    } catch (error) {
+      console.error('[Feed-Debug] O feed quebrou ao consumir a API:', error);
+    }
+  }
+
+  // 3. Monta o HTML do Card
   function renderCard(item) {
-    const tagsHtml = item.tags.map(tag => `<span class="tag">${tag}</span>`).join('');
+    const id = item.desafio_id; 
+    const tagsHtml = (item.requisitos || []).map(req => `<span class="tag">${req.nome || req}</span>`).join('');
+    const prazo = item.prazo || 'Sem prazo';
+    const xp = item.recompensa?.xp ? `+${item.recompensa.xp} XP` : '+0 XP';
+    const empresa = item.empresa_id ? item.empresa_id.replace('empresa_', '').toUpperCase() : 'SS';
     
-    // Pequena variação visual dependendo do tipo
-   let actionBtn = `<button class="go-btn" onclick="window.location.href='/ponte-mvp/frontend/desafio.html'">Participar ›</button>`;
-  if (item.tipo === 'curso') actionBtn = `<button class="go-btn go-curso" onclick="window.location.href='/ponte-mvp/frontend/desafio.html'">Matricular ›</button>`;
-  if (item.tipo === 'evento') actionBtn = `<button class="go-btn go-evento" onclick="window.location.href='/ponte-mvp/frontend/desafio.html'">Inscrever-se ›</button>`;
+    let actionText = 'Participar ›';
+    let btnClass = 'go-btn';
+    if (item.tipo === 'curso') { actionText = 'Matricular ›'; btnClass = 'go-btn go-curso'; }
+    if (item.tipo === 'evento') { actionText = 'Inscrever-se ›'; btnClass = 'go-btn go-evento'; }
 
     return `
       <div class="card ${item.tipo}" data-type="${item.tipo}">
-        <div class="type-ribbon">${item.tipo.charAt(0).toUpperCase() + item.tipo.slice(1)}</div>
         <div class="card-header">
           <div class="company-row">
-            <div class="company-logo" style="color:${item.cor_logo || '#fff'}; font-size: 10px;">${item.logo}</div>
+            <div class="company-logo" style="color: #fff; background: var(--orange); font-size: 11px;">${empresa.substring(0,2)}</div>
             <div>
-              <div class="company-name">${item.empresa}</div>
-              <div class="company-location">${item.local}</div>
+              <div class="company-name" style="text-transform: capitalize;">${item.empresa_id ? item.empresa_id.replace(/_/g, ' ') : 'Empresa Confidencial'}</div>
+              <div class="company-location">Pernambuco</div>
             </div>
           </div>
-          <div class="card-meta">
-            <div class="meta-date">📅 ${item.data}</div>
-            <div class="meta-xp">${item.xp}</div>
+          <div class="card-meta" style="display: flex; gap: 10px; margin-top: 15px; font-size: 13px;">
+            <div class="meta-type" style="text-transform: capitalize; font-weight: 800; color: var(--orange);">🏷️ ${item.tipo}</div>
+            <div class="meta-date" style="color: #666;">📅 ${prazo}</div>
+            <div class="meta-xp" style="color: #2e7d32; font-weight: bold;">✨ ${xp}</div>
           </div>
         </div>
-        <div class="card-tags">${tagsHtml}</div>
-        <div class="card-title">${item.titulo}</div>
-        <div class="card-desc">${item.desc}</div>
-        <div class="card-footer">
+        
+        <div class="card-tags" style="margin-top: 10px;">${tagsHtml}</div>
+        <div class="card-title" style="margin-top: 10px; font-size: 18px;">${item.titulo}</div>
+        <div class="card-desc" style="margin-top: 5px; color: #555;">${item.descricao_curta || item.descricao}</div>
+        
+        <div class="card-footer" style="margin-top: 15px;">
           <div class="participants">
-            <span class="part-count">${item.participantes}</span>
+            <span class="part-count">Novidade!</span>
           </div>
           <div class="card-actions">
-            <button class="act-btn" onclick="this.classList.toggle('liked')">♥</button>
-            <button class="act-btn share-btn">
-              <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
-            </button>
-            ${actionBtn}
+            <button class="${btnClass}" onclick="window.location.href='desafio.html?id=${id}'">${actionText}</button>
           </div>
         </div>
       </div>
     `;
   }
 
-  // Busca os dados da API
-  async function loadFeed() {
-    try {
-      grid.innerHTML = '<p style="text-align: center; width: 100%; color: var(--muted);">Buscando oportunidades...</p>';
-      
-      const response = await fetch(API_FEED_URL);
-      if (!response.ok) throw new Error('Backend indisponível');
-      
-      const data = await response.json();
-      console.log("\n[Feed-Debug] Dados brutos recebidos da API:", data);
-      
-      // Se vier vazio, exibe mensagem
-      if (!data || data.length === 0) {
-        grid.innerHTML = '<p style="text-align: center; width: 100%; color: var(--muted);">Nenhuma oportunidade no momento. Volta mais tarde!</p>';
-        return;
-      }
-
-      grid.innerHTML = data.map(renderCard).join('');
-
-    } catch (error) {
-      console.warn('[Feed] Backend não respondeu. Usando dados de fallback.', error);
-      // Fallback pra tela não ficar em branco enquanto Pedro arruma a API
-      grid.innerHTML = fallbackData.map(renderCard).join('');
-    }
-  }
-
-  // Sistema de Filtros (Pills)
+  // 4. Lógica de botões de filtro
   function setupFilters() {
-    const pills = document.querySelectorAll('.pill');
-    pills.forEach(pill => {
-      pill.addEventListener('click', () => {
-        // Remove active de todos e bota no clicado
-        pills.forEach(p => p.classList.remove('active'));
-        pill.classList.add('active');
+    // CORREÇÃO: Buscando pela classe '.pill' do HTML
+    const filterBtns = document.querySelectorAll('.pill');
+    const cards = document.querySelectorAll('.card');
 
-        const filter = pill.dataset.filter;
-        const cards = grid.querySelectorAll('.card');
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
 
+        const filterValue = btn.getAttribute('data-filter');
         cards.forEach(card => {
-          if (filter === 'all' || card.dataset.type === filter) {
-            card.style.display = 'flex';
+          if (filterValue === 'all' || card.getAttribute('data-type') === filterValue) {
+            card.style.display = 'block';
           } else {
             card.style.display = 'none';
           }
@@ -123,8 +129,9 @@
     });
   }
 
-  // Inicia o bagulho
+  // 5. Start
   document.addEventListener('DOMContentLoaded', () => {
+    loadUserProfile();
     loadFeed().then(() => {
       setupFilters();
     });

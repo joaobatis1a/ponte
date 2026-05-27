@@ -46,21 +46,14 @@ class Formacao(BaseModel):
     fim: Optional[date] = None
 
 
-class HardSkill(BaseModel):
+class Habilidade(BaseModel):
     nome: str
     origem: str = "manguelito"
-
-class SoftSkill(BaseModel):
-    nome: str
-    origem: str = "manguelito"
-
 
 class Emblema(BaseModel):
     nome: str
     descricao: Optional[str] = None
     conquistado_em: datetime = datetime.utcnow()
-
-
 
 class Jovem(Document):
     user_id: str
@@ -78,15 +71,14 @@ class Jovem(Document):
     xp: int = 0
     nivel: NivelEnum = NivelEnum.iniciante
     emblemas: List[Emblema] = []
-
-    hard_skills: List[HardSkill] = []
-    soft_skills: List[SoftSkill] = []
-    
+    habilidades: List[Habilidade] = []
+    desafios_aceitos: List[str] = [] 
     mensagens_semana: int = 0
     ultima_resetagem_mensagens: Optional[datetime] = None
     
     ativo: bool = True
     criado_em: datetime = datetime.utcnow()
     atualizado_em: datetime = datetime.utcnow()
+
     class Settings:
         name = "jovens"

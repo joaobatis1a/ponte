@@ -52,11 +52,11 @@
 
     <!-- Topbar -->
     <div class="topbar">
-      <a href="/ponte-mvp/frontend/feed.html" class="back-btn" aria-label="Voltar">
+      <a href="feed.html" class="back-btn" aria-label="Voltar">
         <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
       </a>
       <nav class="breadcrumb">
-        <a href="/ponte-mvp/frontend/feed.html">Home</a>
+        <a href="feed.html">Home</a>
         <span class="bc-sep">›</span>
         <span class="bc-current" data-placeholder="challenge-title-short">Detalhes do desafio</span>
       </nav>
@@ -95,30 +95,28 @@
               <div class="hero-meta">
                 <div class="meta-deadline">
                   <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-                  <span data-placeholder="challenge-deadline">20 Jun</span>
+                  <span id="challenge-prazo" data-placeholder="challenge-deadline">20 Jun</span>
                 </div>
-                <div class="meta-xp desafio-xp" data-placeholder="challenge-xp">+550 XP</div>
+                <div id="challenge-xp" class="meta-xp desafio-xp" data-placeholder="challenge-xp">+550 XP</div>
               </div>
             </div>
 
             <div class="hero-tags">
-              <!-- data-placeholder="challenge-tags" — renderizar via JS -->
               <span class="tag desafio-tag">Figma</span>
               <span class="tag desafio-tag">Storytelling</span>
               <span class="tag level-tag">De Nível 1–2</span>
             </div>
 
-            <h1 class="challenge-title" data-placeholder="challenge-title">
+            <h1 id="challenge-title" class="challenge-title" data-placeholder="challenge-title">
               UX Design: <span class="title-highlight">E-commerce de Artesanato em Recife</span>
             </h1>
           </div>
 
-          <!-- ── O Desafio ── -->
           <section class="detail-section" id="section-description">
             <h2 class="section-heading">
               <span class="section-icon">🎯</span> O Desafio
             </h2>
-            <div class="prose" data-placeholder="challenge-description">
+            <div id="challenge-description" class="prose" data-placeholder="challenge-description">
               <p>Um mercado de artesanato em Recife precisa de uma pont digital. Seu objetivo é projetar uma plataforma que conecta artesãos locais com o mercado internacional, mantendo a identidade cultural da região.</p>
               <p>Você deverá criar o fluxo principal de checkout, focando em como contar a história do artesão e o impacto das suas artes antes do pagamento, agregando valor emocional ao produto final.</p>
             </div>
@@ -173,14 +171,28 @@
                O integrador deve injetar o <form id="submission-form"> aqui.
                Não remover nem mover este comentário ou o wrapper. -->
           <section class="detail-section submission-anchor" id="section-submission-form" aria-label="Formulário de submissão">
-            <!-- [[SUBMISSION_FORM_INJECTION_POINT]] -->
-            <div class="submission-placeholder">
-              <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
-              <span>Área de submissão da solução</span>
-            </div>
-          </section>
+            <h2 class="section-heading">
+              <span class="section-icon">🚀</span> Enviar Resolução
+            </h2>
+            
+            <form id="form-submissao" style="display: none; background: #f8f9fa; padding: 20px; border-radius: 8px; border: 1px solid #e0e0e0; margin-top: 15px;">
+              
+              <div style="margin-bottom: 15px;">
+                <label for="campo-link" style="font-weight: 600; display: block; margin-bottom: 8px; color: #333;">Link do Google Drive (Obrigatório)</label>
+                <input type="url" id="campo-link" placeholder="https://drive.google.com/..." required style="width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 6px; font-family: inherit;">
+              </div>
 
-        </div><!-- /col-main -->
+              <div style="margin-bottom: 15px;">
+                <label for="campo-texto" style="font-weight: 600; display: block; margin-bottom: 8px; color: #333;">Comentários / Descrição (Opcional)</label>
+                <textarea id="campo-texto" rows="4" placeholder="Conta um pouco sobre a tua solução..." style="width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 6px; font-family: inherit; resize: vertical;"></textarea>
+              </div>
+
+              <button type="submit" style="background: #e65100; color: white; padding: 12px 24px; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; width: 100%; font-size: 16px;">
+                Enviar Solução
+              </button>
+            </form>
+          </section>
+        </div>
 
         <!-- ══════════════════════════════════
              COLUNA LATERAL (direita)
@@ -291,6 +303,6 @@
 
   </div><!-- /main -->
 
-  <script src="desafio.js"></script>
+  <script src="js/desafio.js"></script>
 </body>
 </html>

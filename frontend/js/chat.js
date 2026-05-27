@@ -82,8 +82,20 @@
       const data = await response.json();
       hideTyping();
       
-      // Renderiza a resposta do Llama 3 processada pelo Pedro
       addRow('bot', data.resposta || "Oxe, minha antena falhou. Pode repetir?");
+
+      if (data.finalizar_conversa === true) {
+          console.log("[Chat-Debug] Conversa finalizada pela IA. Redirecionando para o Feed...");
+          
+          input.disabled = true;
+          document.getElementById('sendBtn').disabled = true;
+          
+          toast('Perfil atualizado com sucesso!', 'success');
+
+          setTimeout(() => {
+              window.location.href = 'feed.html';
+          }, 3500);
+      }
 
     } catch (error) {
       console.error("[Chat] Erro na requisição:", error);

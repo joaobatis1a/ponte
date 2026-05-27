@@ -339,12 +339,12 @@ body {
   background: var(--card);
   border: 2px solid var(--card-border);
   border-radius: var(--radius);
-  padding: 22px;
+  padding: 28px;
   box-shadow: var(--shadow);
   cursor: pointer;
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 18px;
   position: relative;
   overflow: hidden;
   animation: fadeUp 0.4s ease both;
@@ -500,10 +500,11 @@ body {
   color: var(--text-dark);
   line-height: 1.35;
 }
+
 .card-desc {
-  font-size: 13px;
+  font-size: 13.5px;
   color: var(--text-mid);
-  line-height: 1.6;
+  line-height: 1.7;
   flex: 1;
 }
  
