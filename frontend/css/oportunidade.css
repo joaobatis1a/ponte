@@ -1,0 +1,52 @@
+/* ═══════════════════════════════════════════════════════════
+   P.O.N.T.E. — oportunidade.css
+   Complemento ao desafio.css: adiciona a cor "vaga" (azul) e o
+   toast, mantendo os mesmos tokens/estrutura da tela de desafio.
+═══════════════════════════════════════════════════════════ */
+
+:root {
+  --vaga:    #2a5d9f;
+  --vaga-lt: #dbe7f5;
+}
+
+.hero-card.vaga {
+  border-color: rgba(42,93,159,.4);
+  background: linear-gradient(160deg, #f4f8fd 0%, var(--card) 70%);
+}
+.vaga-pill { background: var(--vaga); color: #fff; }
+.vaga-xp { color: var(--vaga); }
+.vaga-tag { background: var(--vaga-lt); color: var(--vaga); }
+.req-icon.vaga { color: var(--vaga); }
+
+.vaga-salary {
+  display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap;
+  margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--card-border);
+}
+.vaga-salary-label { font-size: .78rem; font-weight: 800; color: var(--text-light); text-transform: uppercase; letter-spacing: .04em; }
+.vaga-salary-value { font-size: 1rem; font-weight: 900; color: var(--vaga); }
+
+.btn-accept { background: var(--vaga); }
+.btn-accept:hover { background: #234c82; }
+
+/* Toast (não existia no desafio.css) */
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 100px;
+  transform: translate(-50%, 20px);
+  background: var(--text-dark);
+  color: #fff;
+  padding: 12px 18px;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 14px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .25s, transform .25s;
+  box-shadow: 0 12px 30px rgba(0,0,0,.2);
+  max-width: 90vw;
+  text-align: center;
+  z-index: 999;
+}
+.toast.show { opacity: 1; transform: translate(-50%, 0); }
+.toast.success { background: var(--vaga); }

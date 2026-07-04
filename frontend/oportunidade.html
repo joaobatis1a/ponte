@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>P.O.N.T.E. — Detalhes da Oportunidade</title>
+  <link rel="stylesheet" href="css/desafio.css">
+  <link rel="stylesheet" href="css/oportunidade.css">
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=DM+Sans:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <img src="assets/logo-1.png" alt="P.O.N.T.E. logo" class="logo-img">
+    </div>
+
+    <div class="nav-section-label">Menu</div>
+
+    <div class="nav-item" data-page="home">
+      <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      Home
+    </div>
+
+    <div class="nav-item active" data-page="vagas">
+      <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2"><rect x="3" y="7" width="5" height="14" rx="1"/><rect x="9.5" y="3" width="5" height="18" rx="1"/><rect x="16" y="10" width="5" height="11" rx="1"/></svg>
+      Vagas
+    </div>
+
+    <div class="nav-item" data-page="mensagens">
+      <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      Mensagens
+      <span class="nav-badge" id="msg-badge">3</span>
+    </div>
+
+    <div class="sidebar-spacer"></div>
+
+    <div class="sidebar-user">
+      <div class="user-avatar">MA</div>
+      <div class="user-info">
+        <div class="name">Maria A.</div>
+        <div class="lvl">⚡ LVL 4 · 2.450 XP</div>
+      </div>
+    </div>
+  </aside>
+
+  <div class="main">
+
+    <div class="topbar">
+      <a href="feed.html" class="back-btn" aria-label="Voltar">
+        <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      </a>
+      <nav class="breadcrumb">
+        <a href="feed.html">Home</a>
+        <span class="bc-sep">›</span>
+        <span class="bc-current" data-placeholder="opportunity-title-short">Detalhes da vaga</span>
+      </nav>
+
+      <div class="topbar-actions">
+        <button class="icon-btn" id="btn-save" aria-label="Salvar vaga" title="Salvar">
+          <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </button>
+        <button class="icon-btn" aria-label="Compartilhar" title="Compartilhar">
+          <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="content">
+      <div class="detail-layout">
+
+        <div class="col-main">
+
+          <div class="hero-card vaga">
+            <div class="type-pill vaga-pill">Oportunidade</div>
+
+            <div class="hero-header">
+              <div class="company-row">
+                <div class="company-logo" style="color: var(--vaga);">MT</div>
+                <div>
+                  <div class="company-name">Mangue Tech</div>
+                  <div class="company-location">Recife · PE · Híbrido</div>
+                </div>
+              </div>
+              <div class="hero-meta">
+                <div class="meta-deadline">
+                  <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                  <span>Inscrições até 30 Jun</span>
+                </div>
+                <div class="meta-xp vaga-xp">Estágio · CLT</div>
+              </div>
+            </div>
+
+            <div class="hero-tags">
+              <span class="tag vaga-tag">Suporte Técnico</span>
+              <span class="tag vaga-tag">Atendimento</span>
+              <span class="tag level-tag">De Nível 2–3</span>
+            </div>
+
+            <h1 class="challenge-title">
+              Estágio em Suporte Técnico: <span class="title-highlight">Time de Infraestrutura</span>
+            </h1>
+
+            <div class="vaga-salary">
+              <span class="vaga-salary-label">Bolsa-auxílio</span>
+              <span class="vaga-salary-value">R$ 1.200 / mês + vale-transporte</span>
+            </div>
+          </div>
+
+          <section class="detail-section" id="section-description">
+            <h2 class="section-heading">
+              <span class="section-icon">🎯</span> Sobre a vaga
+            </h2>
+            <div class="prose">
+              <p>A Mangue Tech está com uma vaga de estágio pro time de infraestrutura, ideal pra quem já desenrola tecnologia no dia a dia — mesmo que tenha aprendido resolvendo os próprios perrengues em casa ou ajudando vizinhos e familiares.</p>
+              <p>Você vai acompanhar o time de suporte no atendimento a usuários internos, ajudar a organizar a base de conhecimento de problemas comuns, e aprender rotina de infraestrutura básica (redes, backups, atendimento via chamados).</p>
+            </div>
+          </section>
+
+          <section class="detail-section" id="section-requirements">
+            <h2 class="section-heading">
+              <span class="section-icon">📋</span> Requisitos Mínimos
+            </h2>
+            <ul class="req-list">
+              <li class="req-item">
+                <span class="req-icon vaga">✦</span>
+                <span>Boa comunicação e paciência pra explicar coisas técnicas de um jeito simples</span>
+              </li>
+              <li class="req-item">
+                <span class="req-icon vaga">✦</span>
+                <span>Já ter resolvido problemas de <strong>redes ou suporte técnico</strong>, mesmo informalmente</span>
+              </li>
+              <li class="req-item">
+                <span class="req-icon vaga">✦</span>
+                <span>Nível 2 a 3 na plataforma P.O.N.T.E.</span>
+              </li>
+            </ul>
+          </section>
+
+          <section class="detail-section" id="section-benefits">
+            <h2 class="section-heading">
+              <span class="section-icon">🎁</span> Benefícios
+            </h2>
+            <ul class="deliverable-list">
+              <li><span class="deliv-bullet">›</span> Vale-transporte e vale-refeição</li>
+              <li><span class="deliv-bullet">›</span> Mentoria com o time sênior de infraestrutura</li>
+              <li><span class="deliv-bullet optional">›</span> Possibilidade de efetivação após 6 meses <em>(a combinar)</em></li>
+            </ul>
+          </section>
+
+        </div>
+
+        <div class="col-side">
+
+          <div class="side-card rewards-card">
+            <div class="side-card-title">O que você ganha</div>
+            <div class="rewards-grid">
+              <div class="reward-item">
+                <div class="reward-icon xp-icon">⚡</div>
+                <div class="reward-label">Experiência</div>
+                <div class="reward-value xp-value">+800 XP</div>
+                <div class="reward-sub">De Nível 2–3</div>
+              </div>
+              <div class="reward-item">
+                <div class="reward-icon badge-icon">🏅</div>
+                <div class="reward-label">Emblema</div>
+                <div class="reward-value badge-value">Suporte de Infra</div>
+                <div class="reward-sub">No PP</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="side-card tip-card">
+            <div class="tip-header">
+              <div class="tip-mascot" aria-label="Mascote Manguelito">🦀</div>
+              <div class="tip-title-row">
+                <span class="tip-eyebrow">DICA DO</span>
+                <span class="tip-name">Manguelito</span>
+              </div>
+            </div>
+            <p class="tip-text">
+              "Ei, boy! Nessa vaga, o que eles mais querem ver é como tu explica as coisas. Antes de mandar a candidatura, conta no teu perfil um exemplo real de quando tu ajeitou algo técnico pra alguém. <strong>Isso conta muito mais que certificado!</strong>"
+            </p>
+          </div>
+
+          <div class="side-card company-card">
+            <div class="side-card-title">Sobre a empresa</div>
+            <div class="company-profile-row">
+              <div class="company-logo-lg" style="color: var(--vaga);">MT</div>
+              <div>
+                <div class="cp-name">Mangue Tech</div>
+                <div class="cp-location">Recife · PE</div>
+              </div>
+            </div>
+            <p class="company-bio">
+              Empresa de infraestrutura e suporte de TI, nascida no Porto Digital, com o time majoritariamente formado por jovens da região metropolitana do Recife.
+            </p>
+            <a href="#" class="ver-empresa-btn">
+              Ver Empresa
+              <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+
+          <div class="side-card participants-card">
+            <div class="side-card-title">Candidatos</div>
+            <div class="participants-row">
+              <div class="avatar-stack">
+                <div class="av" style="background: #2a5d9f;">RC</div>
+                <div class="av" style="background: #2a7d4f;">LF</div>
+                <div class="av" style="background: #c45e20;">BS</div>
+                <div class="av av-more">+9</div>
+              </div>
+              <span class="part-label">12 pessoas já se candidataram</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+    <div class="action-bar" id="action-bar" role="toolbar" aria-label="Ações da vaga">
+      <div class="action-bar-inner">
+        <div class="action-bar-info">
+          <span class="ab-challenge-name">Estágio em Suporte Técnico</span>
+          <span class="ab-meta">
+            <span class="ab-xp">+800 XP</span>
+            <span class="ab-sep">·</span>
+            <span class="ab-deadline">Inscrições até 30 Jun</span>
+          </span>
+        </div>
+        <div class="action-btns">
+          <button class="btn-accept" id="btn-candidatar" aria-label="Candidatar-se a esta vaga">
+            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+            Candidatar-se
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="js/nav.js"></script>
+  <script src="js/oportunidade.js"></script>
+</body>
+</html>
