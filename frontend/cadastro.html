@@ -10,24 +10,58 @@
   <link rel="stylesheet" href="css/cadastro.css"/>
   </head>
   <body>
+  <div class="auth-shell">
+    <aside class="auth-visual" aria-hidden="true">
+      <div class="auth-aurora">
+        <span class="aaurora a1"></span>
+        <span class="aaurora a2"></span>
+      </div>
+      <div class="auth-visual-content">
+        <a href="index.html" class="auth-logo">
+          <img src="assets/logo-1.png" alt="" />
+          <span>P.O.N.T.E.</span>
+        </a>
+        <h2>Teu talento também é uma habilidade que conta.</h2>
+        <p>Cria teu perfil, conversa com o Manguelito e mostra pras empresas o que tu já sabe fazer na prática.</p>
+        <div class="auth-visual-card">
+          <div class="pass-mini">
+            <div class="pass-mini-top">
+              <div class="pass-avatar">MA</div>
+              <div>
+                <strong>Maria A.</strong>
+                <span>⚡ Lvl 4 · 2.450 XP</span>
+              </div>
+            </div>
+            <div class="pass-mini-skills">
+              <span>UX Research</span>
+              <span>Figma</span>
+              <span>Storytelling</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </aside>
   <main class="card" id="card" role="main">
-    <header class="topbar">
-      <button type="button" class="icon-btn" aria-label="Ajuda" data-toast="Precisa de ajuda? Estamos aqui 🦀">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-      </button>
-      <a class="brand" href="index.html">
-        <img src="assets/logo-1.png" alt="Mascote P.O.N.T.E." width="56" height="56" />
-      </a>
-      <button type="button" class="icon-btn" aria-label="Fechar" data-toast="Saída cancelada — segue o jogo!">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-      </button>
-    </header>
-    <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="15">
-      <div class="progress-bar" id="progressBar" style="width:15%"></div>
+    <div class="card-box">
+      <header class="topbar">
+        <button type="button" class="icon-btn" aria-label="Ajuda" data-toast="Precisa de ajuda? Estamos aqui 🦀">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        </button>
+        <a class="brand" href="index.html">
+          <img src="assets/logo-1.png" alt="Mascote P.O.N.T.E." width="56" height="56" />
+        </a>
+        <a href="index.html" class="icon-btn" aria-label="Voltar para a página inicial">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </a>
+      </header>
+      <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="15">
+        <div class="progress-bar" id="progressBar" style="width:15%"></div>
+      </div>
+      <div id="stepRoot"></div>
     </div>
-    <div id="stepRoot"></div>
-    <div class="toast" id="toast" role="status" aria-live="polite"></div>
   </main>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  </div>
   <script src="js/api.js"></script>
   <script src="js/cadastro.js"></script>
   </body>

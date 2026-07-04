@@ -198,15 +198,17 @@ function renderStep0() {
     <h1 class="title">Vamo começar<br/>com o <span class="accent">básico</span>.</h1>
     <p class="subtitle">Passa tuas informações principais pra a gente começar a montar teu perfil.</p>
     <form id="form0">
-      <div class="field">
-        <label for="nome">Nome</label>
-        <input id="nome" type="text" placeholder="Ex.: Reginaldo" value="${esc(b.nome)}" class="${e.nome?'invalid':''}" data-bind="basico.nome" />
-        <p class="error">${esc(e.nome||'')}</p>
-      </div>
-      <div class="field">
-        <label for="sobrenome">Sobrenome</label>
-        <input id="sobrenome" type="text" placeholder="Ex.: Rossi" value="${esc(b.sobrenome)}" class="${e.sobrenome?'invalid':''}" data-bind="basico.sobrenome" />
-        <p class="error">${esc(e.sobrenome||'')}</p>
+      <div class="two-cols">
+        <div class="field">
+          <label for="nome">Nome</label>
+          <input id="nome" type="text" placeholder="Ex.: Reginaldo" value="${esc(b.nome)}" class="${e.nome?'invalid':''}" data-bind="basico.nome" />
+          <p class="error">${esc(e.nome||'')}</p>
+        </div>
+        <div class="field">
+          <label for="sobrenome">Sobrenome</label>
+          <input id="sobrenome" type="text" placeholder="Ex.: Rossi" value="${esc(b.sobrenome)}" class="${e.sobrenome?'invalid':''}" data-bind="basico.sobrenome" />
+          <p class="error">${esc(e.sobrenome||'')}</p>
+        </div>
       </div>
       <div class="row">
         <div class="photo-col">
