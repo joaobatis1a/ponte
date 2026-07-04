@@ -11,46 +11,83 @@
   <link rel="stylesheet" href="css/chat.css" />
 </head>
 <body>
-  <main class="card chat-card" role="main" aria-label="Cadastro com o Manguelito">
-    <header class="topbar">
-      <button class="icon-btn" type="button" aria-label="Voltar" id="btnBack">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
-      </button>
-      <div class="brand">
-        <img src="assets/logo-1.png" alt="Mascote P.O.N.T.E." />
+  <div class="chat-app">
+    <aside class="chat-sidebar">
+      <div class="sidebar-top">
+        <a href="index.html" class="sidebar-brand">
+          <img src="assets/logo-1.png" alt="Mascote P.O.N.T.E." />
+          <span>P.O.N.T.E.</span>
+        </a>
       </div>
-      <button class="icon-btn" type="button" aria-label="Fechar" id="btnClose">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
-      </button>
-    </header>
+      <div class="sidebar-section-label">Conversas</div>
+      <nav class="sidebar-list">
+        <a class="sidebar-item active" href="chat.html">
+          <span class="sidebar-avatar"><img src="assets/logo-1.png" alt="" /></span>
+          <span class="sidebar-item-info">
+            <strong>Manguelito</strong>
+            <span>Assistente de habilidades</span>
+          </span>
+          <span class="sidebar-dot"></span>
+        </a>
+      </nav>
+      <div class="sidebar-section-label">Navegação</div>
+      <nav class="sidebar-list">
+        <a class="sidebar-item" href="feed.html">
+          <span class="sidebar-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="5" height="14" rx="1"/><rect x="9.5" y="3" width="5" height="18" rx="1"/><rect x="16" y="10" width="5" height="11" rx="1"/></svg></span>
+          <span class="sidebar-item-info"><strong>Desafios</strong></span>
+        </a>
+        <a class="sidebar-item" href="oportunidade.html">
+          <span class="sidebar-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg></span>
+          <span class="sidebar-item-info"><strong>Oportunidades</strong></span>
+        </a>
+        <a class="sidebar-item" href="pontepass.html">
+          <span class="sidebar-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"/><path d="M5.5 21a6.5 6.5 0 0 1 13 0"/></svg></span>
+          <span class="sidebar-item-info"><strong>Ponte Pass</strong></span>
+        </a>
+      </nav>
+    </aside>
 
-    <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" id="progressBar">
-      <div class="progress-fill" id="progressFill" style="width: 50%"></div>
-    </div>
+    <main class="card chat-card" role="main" aria-label="Cadastro com o Manguelito">
+      <header class="topbar">
+        <button class="icon-btn" type="button" aria-label="Voltar" id="btnBack">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <div class="brand">
+          <img src="assets/logo-1.png" alt="Mascote P.O.N.T.E." />
+        </div>
+        <button class="icon-btn" type="button" aria-label="Fechar" id="btnClose">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+        </button>
+      </header>
 
-    <section class="chat-header">
-      <div class="chat-avatar">
-        <img src="assets/logo-1.png" alt="Manguelito" />
-        <span class="status-dot" aria-hidden="true"></span>
+      <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" id="progressBar">
+        <div class="progress-fill" id="progressFill" style="width: 50%"></div>
       </div>
-      <div class="chat-meta">
-        <h1>Manguelito</h1>
-        <p><span class="typing-text" id="statusText">online · pronto pra te conhecer</span></p>
-      </div>
-    </section>
 
-    <section class="chat-stream" id="chatStream" aria-live="polite" aria-label="Conversa">
+      <section class="chat-header">
+        <div class="chat-avatar">
+          <img src="assets/logo-1.png" alt="Manguelito" />
+          <span class="status-dot" aria-hidden="true"></span>
+        </div>
+        <div class="chat-meta">
+          <h1>Manguelito</h1>
+          <p><span class="typing-text" id="statusText">online · pronto pra te conhecer</span></p>
+        </div>
       </section>
 
-    <form class="composer" id="composer" autocomplete="off">
-      <input id="msgInput" type="text" placeholder="Escreve aqui pro Manguelito…" autocomplete="off" maxlength="500" aria-label="Sua mensagem" />
-      <button type="submit" class="send-btn" aria-label="Enviar mensagem" id="sendBtn">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg>
-      </button>
-    </form>
+      <section class="chat-stream" id="chatStream" aria-live="polite" aria-label="Conversa">
+        </section>
 
-    <div class="hint" id="hint">Dica: pode falar do teu jeito 🦀 o Manguelito entende.</div>
-  </main>
+      <form class="composer" id="composer" autocomplete="off">
+        <input id="msgInput" type="text" placeholder="Escreve aqui pro Manguelito…" autocomplete="off" maxlength="500" aria-label="Sua mensagem" />
+        <button type="submit" class="send-btn" aria-label="Enviar mensagem" id="sendBtn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+        </button>
+      </form>
+
+      <div class="hint" id="hint">Dica: pode falar do teu jeito 🦀 o Manguelito entende.</div>
+    </main>
+  </div>
 
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
 
