@@ -13,73 +13,85 @@
 </head>
 <body>
 
-  <header class="nav">
-    <a href="index.html" class="nav-brand">
-      <img src="assets/logo-1.png" alt="Mascote P.O.N.T.E." />
-      <span>P.O.N.T.E.</span>
-    </a>
-    <nav class="nav-links">
+  <div class="nav-wrap">
+    <header class="nav">
+      <a href="index.html" class="nav-brand">
+        <img src="assets/logo-1.png" alt="Mascote P.O.N.T.E." />
+        <span>P.O.N.T.E.</span>
+      </a>
+      <nav class="nav-links">
+        <a href="#como-funciona">Como funciona</a>
+        <a href="#jovens">Pra jovens</a>
+        <a href="#empresas">Pra empresas</a>
+      </nav>
+      <div class="nav-actions">
+        <a href="login.html" class="nav-login">Entrar</a>
+        <a href="cadastro.html" class="btn-nav">Criar conta</a>
+      </div>
+      <button class="nav-burger" id="navBurger" aria-label="Abrir menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </header>
+
+    <div class="nav-mobile" id="navMobile">
       <a href="#como-funciona">Como funciona</a>
       <a href="#jovens">Pra jovens</a>
       <a href="#empresas">Pra empresas</a>
-    </nav>
-    <div class="nav-actions">
-      <a href="login.html" class="nav-login">Entrar</a>
+      <a href="login.html">Entrar</a>
       <a href="cadastro.html" class="btn-nav">Criar conta</a>
     </div>
-    <button class="nav-burger" id="navBurger" aria-label="Abrir menu" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
-  </header>
-
-  <div class="nav-mobile" id="navMobile">
-    <a href="#como-funciona">Como funciona</a>
-    <a href="#jovens">Pra jovens</a>
-    <a href="#empresas">Pra empresas</a>
-    <a href="login.html">Entrar</a>
-    <a href="cadastro.html" class="btn-nav">Criar conta</a>
   </div>
 
   <main>
-    <section class="hero">
+    <section class="hero" id="hero">
+      <div class="hero-aurora" aria-hidden="true">
+        <span class="aurora a1"></span>
+        <span class="aurora a2"></span>
+        <span class="aurora a3"></span>
+      </div>
+      <div class="hero-grain" aria-hidden="true"></div>
       <div class="hero-blob" aria-hidden="true"></div>
       <div class="hero-text">
-        <span class="eyebrow">Feito em Pernambuco, pra Pernambuco</span>
-        <h1>Aquilo que tu já sabe fazer também é <span class="accent">habilidade</span>.</h1>
-        <p class="lede">Consertar, organizar, resolver, criar — o jeito que a quebrada ensina também abre porta. A P.O.N.T.E. conecta esse conhecimento a desafios reais de empresas parceiras, e transforma isso em experiência que conta de verdade no currículo.</p>
-        <div class="hero-actions">
-          <a href="cadastro.html" class="btn-primary">Quero começar <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-          <a href="#empresas" class="btn-ghost">Sou empresa parceira</a>
+        <span class="eyebrow hero-in" style="--d:0">Feito em Pernambuco, pra Pernambuco</span>
+        <h1 class="hero-title">
+          <span class="line hero-in" style="--d:1">Aquilo que tu já sabe fazer</span>
+          <span class="line hero-in" style="--d:2">também é <span class="accent shine">habilidade</span>.</span>
+        </h1>
+        <p class="lede hero-in" style="--d:3">Consertar, organizar, resolver, criar — o jeito que a quebrada ensina também abre porta. A P.O.N.T.E. conecta esse conhecimento a desafios reais de empresas parceiras, e transforma isso em experiência que conta de verdade no currículo.</p>
+        <div class="hero-actions hero-in" style="--d:4">
+          <a href="cadastro.html" class="btn-primary magnetic">Quero começar <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a href="#empresas" class="btn-ghost magnetic">Sou empresa parceira</a>
         </div>
-        <div class="hero-proof">
+        <div class="hero-proof hero-in" style="--d:5">
           <div><strong>+3</strong><span>áreas de carreira</span></div>
           <div><strong>1 a 1</strong><span>conversa com o Manguelito</span></div>
           <div><strong>0 R$</strong><span>pra participar</span></div>
         </div>
       </div>
-      <div class="hero-card">
+      <div class="hero-card hero-in" style="--d:2" id="heroCard">
         <div class="chat-mock">
           <div class="chat-mock-head">
-            <img src="assets/logo-1.png" alt="" />
+            <span class="avatar-glow"><img src="assets/logo-1.png" alt="" /></span>
             <div>
               <strong>Manguelito</strong>
-              <span>online agora</span>
+              <span><i class="dot"></i> online agora</span>
             </div>
           </div>
-          <div class="chat-mock-body">
-            <div class="bubble bot">E aí, boy! Me conta uma parada que tu resolveu ultimamente, mesmo que pareça besteira.</div>
-            <div class="bubble user">Ajeitei o roteador de casa todinho, arrumei o wifi de todo mundo no prédio kkk</div>
-            <div class="bubble bot">Ah, então tu desenrola <strong>suporte técnico</strong> e <strong>resolução de problemas</strong>? Massa demais! Já anotei aqui no teu perfil. 🦀</div>
+          <div class="chat-mock-body" id="chatMockBody">
+            <div class="bubble bot" data-t="1">E aí, boy! Me conta uma parada que tu resolveu ultimamente, mesmo que pareça besteira.</div>
+            <div class="bubble user" data-t="2">Ajeitei o roteador de casa todinho, arrumei o wifi de todo mundo no prédio kkk</div>
+            <div class="bubble bot" data-t="3">Ah, então tu desenrola <strong>suporte técnico</strong> e <strong>resolução de problemas</strong>? Massa demais! Já anotei aqui no teu perfil. 🦀</div>
+            <div class="bubble typing" data-t="0" id="typingBubble"><span></span><span></span><span></span></div>
           </div>
-          <div class="chat-mock-skills">
-            <span>+ Suporte técnico</span>
-            <span>+ Resolução de problemas</span>
+          <div class="chat-mock-skills" id="chatMockSkills">
+            <span data-t="4">+ Suporte técnico</span>
+            <span data-t="5">+ Resolução de problemas</span>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="logos-strip">
+    <section class="logos-strip" data-reveal>
       <span>Empresas parceiras que já publicaram desafios</span>
       <div class="logos-row">
         <div class="logo-chip">Solvex Solutions</div>
@@ -89,12 +101,19 @@
       </div>
     </section>
 
+    <section class="stats" data-reveal>
+      <div class="stat-card"><strong data-count="1200" data-suffix="+">0</strong><span>jovens conectados</span></div>
+      <div class="stat-card"><strong data-count="340" data-suffix="+">0</strong><span>desafios concluídos</span></div>
+      <div class="stat-card"><strong data-count="28" data-suffix="">0</strong><span>empresas parceiras</span></div>
+      <div class="stat-card"><strong data-count="4.8" data-suffix="">0</strong><span>nota média do Ponte Pass</span></div>
+    </section>
+
     <section class="how" id="como-funciona">
-      <div class="section-head">
+      <div class="section-head" data-reveal>
         <span class="eyebrow">Como funciona</span>
         <h2>De uma conversa a uma vaga.</h2>
       </div>
-      <div class="how-grid">
+      <div class="how-grid" data-reveal-group>
         <div class="how-card">
           <div class="how-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
           <h3>Conversa com o Manguelito</h3>
@@ -113,7 +132,7 @@
       </div>
     </section>
 
-    <section class="split" id="jovens">
+    <section class="split" id="jovens" data-reveal>
       <div class="split-text">
         <span class="eyebrow">Pra jovens</span>
         <h2>Teu talento não cabe num currículo de modelo pronto.</h2>
@@ -143,7 +162,7 @@
       </div>
     </section>
 
-    <section class="split reverse" id="empresas">
+    <section class="split reverse" id="empresas" data-reveal>
       <div class="split-text">
         <span class="eyebrow">Pra empresas</span>
         <h2>Encontre talento antes que o mercado encontre.</h2>
@@ -171,7 +190,40 @@
       </div>
     </section>
 
-    <section class="cta-final">
+    <section class="testimonials" data-reveal>
+      <div class="section-head">
+        <span class="eyebrow">Quem já passou pela P.O.N.T.E.</span>
+        <h2>Histórias reais de quem começou por aqui.</h2>
+      </div>
+      <div class="testi-grid">
+        <div class="testi-card">
+          <span class="testi-stars">★★★★★</span>
+          <p>"Eu nunca tinha pensado que sabia programar até o Manguelito puxar assunto sobre como eu mexia no computador do meu tio. Hoje tô fazendo meu segundo desafio."</p>
+          <div class="testi-author">
+            <div class="testi-avatar">JP</div>
+            <div><strong>João Pedro, 19</strong><span>Suporte técnico · Recife</span></div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <span class="testi-stars">★★★★★</span>
+          <p>"O desafio de UX que eu fiz virou peça no meu portfólio de verdade. Consegui estágio depois de mostrar isso numa entrevista."</p>
+          <div class="testi-author">
+            <div class="testi-avatar">MA</div>
+            <div><strong>Maria Alice, 21</strong><span>UX Design · Olinda</span></div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <span class="testi-stars">★★★★★</span>
+          <p>"Como empresa parceira, encontramos gente boa que o processo seletivo tradicional nunca ia enxergar. Vale muito a pena."</p>
+          <div class="testi-author">
+            <div class="testi-avatar">SS</div>
+            <div><strong>Solvex Solutions</strong><span>Empresa parceira</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-final" data-reveal>
       <h2>Bora testar o que tu já sabe fazer?</h2>
       <p>Leva menos de 5 minutos pra criar teu perfil e começar a conversa com o Manguelito.</p>
       <a href="cadastro.html" class="btn-primary lg">Criar minha conta agora</a>
@@ -179,17 +231,39 @@
   </main>
 
   <footer class="foot">
-    <div class="foot-brand">
-      <img src="assets/logo-1.png" alt="Mascote P.O.N.T.E." />
-      <span>P.O.N.T.E.</span>
+    <div class="foot-glow" aria-hidden="true"></div>
+    <div class="foot-inner">
+      <div class="foot-col foot-col-brand">
+        <div class="foot-brand">
+          <img src="assets/logo-1.png" alt="Mascote P.O.N.T.E." />
+          <span>P.O.N.T.E.</span>
+        </div>
+        <p>Um projeto que conecta jovens de Pernambuco a oportunidades reais, com apoio de inteligência artificial.</p>
+        <div class="foot-badges">
+          <span>ODS 4</span>
+          <span>ODS 8</span>
+        </div>
+      </div>
+      <div class="foot-col">
+        <h4>Navegação</h4>
+        <a href="#como-funciona">Como funciona</a>
+        <a href="#jovens">Pra jovens</a>
+        <a href="#empresas">Pra empresas</a>
+      </div>
+      <div class="foot-col">
+        <h4>Conta</h4>
+        <a href="cadastro.html">Criar conta</a>
+        <a href="login.html">Entrar</a>
+      </div>
+      <div class="foot-col">
+        <h4>Contato</h4>
+        <a href="mailto:profissionalba1is1a@gmail.com">profissionalba1is1a@gmail.com</a>
+        <span class="foot-loc">Recife, Pernambuco</span>
+      </div>
     </div>
-    <p>Um projeto que conecta jovens de Pernambuco a oportunidades reais, com apoio de inteligência artificial.</p>
-    <div class="foot-links">
-      <a href="cadastro.html">Criar conta</a>
-      <a href="login.html">Entrar</a>
-      <a href="mailto:profissionalba1is1a@gmail.com">Contato</a>
+    <div class="foot-bottom">
+      <span class="foot-copy">© 2026 P.O.N.T.E. — feito com 🦀 em Pernambuco.</span>
     </div>
-    <span class="foot-copy">© 2026 P.O.N.T.E. — feito com 🦀 em Pernambuco.</span>
   </footer>
 
   <script src="js/index.js"></script>
