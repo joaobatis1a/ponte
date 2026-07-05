@@ -10,86 +10,120 @@
   <link rel="stylesheet" href="css/submissao.css" />
 </head>
 <body>
-  <main class="card" role="main">
-    <header class="topbar">
-      <button type="button" class="icon-btn" aria-label="Voltar">
+  <div class="page">
+    <header class="page-topbar">
+      <button type="button" class="icon-btn" aria-label="Voltar" onclick="history.back()">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
       </button>
-      <div class="brand">
-        <img src="assets/logo-1.png" alt="Mascote P.O.N.T.E." width="56" height="56" />
-      </div>
-      <button type="button" class="icon-btn" aria-label="Fechar">
+      <a href="index.html" class="brand">
+        <img src="assets/logo-1.png" alt="Mascote P.O.N.T.E." width="40" height="40" />
+        <span>P.O.N.T.E.</span>
+      </a>
+      <button type="button" class="icon-btn" aria-label="Fechar" onclick="location.href='feed.html'">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
       </button>
     </header>
 
-    <h1 class="title">Envie sua <span class="accent">Solução</span></h1>
-    <p class="subtitle">Conte como você resolveu o desafio e compartilhe o link do seu trabalho.</p>
-
-    <!-- Formulário puramente visual: sem action, sem JS de envio -->
-    <form class="submission-form" novalidate>
-      <div class="field">
-        <label for="descricao">Descrição da solução</label>
-        <textarea
-          id="descricao"
-          name="descricao"
-          rows="6"
-          maxlength="1000"
-          placeholder="Explique a sua abordagem, ferramentas utilizadas, principais resultados e aprendizados…"
-        ></textarea>
-        <div class="field-meta">
-          <span class="hint">Mínimo recomendado: 80 caracteres.</span>
-          <span class="counter"><span class="counter-current">0</span>/1000</span>
+    <main class="submit-layout">
+      <section class="submit-context">
+        <span class="context-eyebrow">Você está enviando uma solução para</span>
+        <h2 class="context-title">Redesign do app de delivery local</h2>
+        <div class="context-company">
+          <span class="context-avatar">SS</span>
+          <div><strong>Solvex Solutions</strong><span>Empresa parceira</span></div>
         </div>
-      </div>
+        <ul class="context-meta">
+          <li><span class="meta-label">Categoria</span><span class="meta-badge cat">UX/UI Design</span></li>
+          <li><span class="meta-label">Dificuldade</span><span class="meta-badge diff-medio">Médio</span></li>
+          <li><span class="meta-label">Recompensa</span><span class="meta-value">450 XP</span></li>
+          <li><span class="meta-label">Prazo</span><span class="meta-value">até 18 de julho</span></li>
+        </ul>
+        <p class="context-tip">💡 Dica do Manguelito: capricha na descrição — quanto mais clara for tua abordagem, mais fácil pra empresa entender teu raciocínio.</p>
+      </section>
 
-      <div class="field">
-        <label for="link">Link da entrega</label>
-        <div class="input-with-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M10 13a5 5 0 0 0 7.07 0l3-3a5 5 0 0 0-7.07-7.07l-1.5 1.5"/>
-            <path d="M14 11a5 5 0 0 0-7.07 0l-3 3a5 5 0 0 0 7.07 7.07l1.5-1.5"/>
-          </svg>
-          <input
-            id="link"
-            name="link"
-            type="url"
-            placeholder="https://exemplo.com/seu-projeto"
-            autocomplete="off"
-            inputmode="url"
-          />
-        </div>
-        <p class="hint">Use uma URL pública (GitHub, Figma, Drive, Behance, etc.).</p>
-      </div>
+      <section class="submit-form-wrap">
+        <h1 class="title">Envie sua <span class="accent">Solução</span></h1>
+        <p class="subtitle">Conte como você resolveu o desafio e compartilhe o link ou arquivo do seu trabalho.</p>
 
-      <!-- Mensagens de feedback (estados visuais estáticos) -->
-      <div class="feedback success-msg" role="status" aria-live="polite">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-        <div>
-          <strong>Solução enviada!</strong>
-          <span>Você receberá uma notificação assim que for avaliada.</span>
-        </div>
-      </div>
+        <!-- Formulário puramente visual: sem action, sem JS de envio real -->
+        <form class="submission-form" novalidate>
+          <div class="field">
+            <label for="descricao">Descrição da solução</label>
+            <textarea
+              id="descricao"
+              name="descricao"
+              rows="7"
+              maxlength="1000"
+              placeholder="Explique a sua abordagem, ferramentas utilizadas, principais resultados e aprendizados…"
+            ></textarea>
+            <div class="field-meta">
+              <span class="hint">Mínimo recomendado: 80 caracteres.</span>
+              <span class="counter"><span class="counter-current">0</span>/1000</span>
+            </div>
+          </div>
 
-      <div class="feedback error-msg" role="alert" aria-live="assertive">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="13"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-        <div>
-          <strong>Não foi possível enviar.</strong>
-          <span>Verifique os campos e tente novamente em instantes.</span>
-        </div>
-      </div>
+          <div class="field">
+            <label>Anexo do projeto</label>
+            <label class="dropzone" for="fileUpload" id="dropzone">
+              <input type="file" id="fileUpload" hidden />
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="dropzone-icon"><path d="M12 3v12"/><path d="m7 8 5-5 5 5"/><path d="M5 21h14a2 2 0 0 0 2-2v-5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2z"/></svg>
+              <strong class="dropzone-title">Arraste um arquivo ou clique para escolher</strong>
+              <span class="dropzone-hint">PDF, imagens, .zip ou link do protótipo — até 25MB</span>
+              <span class="dropzone-file" id="dropzoneFile"></span>
+            </label>
+          </div>
 
-      <!-- Botão de envio com 3 estados visuais: padrão, .disabled (inativo) e .loading -->
-      <div class="actions">
-        <button type="button" class="btn btn-outline">Cancelar</button>
+          <div class="field">
+            <label for="link">Ou cole o link da entrega</label>
+            <div class="input-with-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M10 13a5 5 0 0 0 7.07 0l3-3a5 5 0 0 0-7.07-7.07l-1.5 1.5"/>
+                <path d="M14 11a5 5 0 0 0-7.07 0l-3 3a5 5 0 0 0 7.07 7.07l1.5-1.5"/>
+              </svg>
+              <input
+                id="link"
+                name="link"
+                type="url"
+                placeholder="https://exemplo.com/seu-projeto"
+                autocomplete="off"
+                inputmode="url"
+              />
+            </div>
+            <p class="hint">Use uma URL pública (GitHub, Figma, Drive, Behance, etc.).</p>
+          </div>
 
-        <button type="submit" class="btn btn-submit">
-          <span class="btn-label">Enviar solução</span>
-          <span class="btn-spinner" aria-hidden="true"></span>
-          <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-        </button>
-      </div>
-    </form>
-  </main>
+          <!-- Mensagens de feedback (estados visuais estáticos) -->
+          <div class="feedback success-msg" role="status" aria-live="polite">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            <div>
+              <strong>Solução enviada!</strong>
+              <span>Você receberá uma notificação assim que for avaliada.</span>
+            </div>
+          </div>
+
+          <div class="feedback error-msg" role="alert" aria-live="assertive">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="13"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            <div>
+              <strong>Não foi possível enviar.</strong>
+              <span>Verifique os campos e tente novamente em instantes.</span>
+            </div>
+          </div>
+
+          <!-- Botão de envio com 3 estados visuais: padrão, .disabled (inativo) e .loading -->
+          <div class="actions">
+            <button type="button" class="btn btn-outline">Cancelar</button>
+
+            <button type="submit" class="btn btn-submit">
+              <span class="btn-label">Enviar solução</span>
+              <span class="btn-spinner" aria-hidden="true"></span>
+              <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            </button>
+          </div>
+        </form>
+      </section>
+    </main>
+  </div>
+
+  <script src="js/submissao.js"></script>
 </body>
 </html>
