@@ -22,14 +22,24 @@
 .sidebar-logo {
   display: flex;
   align-items: center;
+  gap: 12px;
+  margin: 4px 0 18px 24px;
 }
 
 .sidebar-logo .logo-img {
-  width: 64px;
-  height: 64px;
+  width: 104px;
+  height: 104px;
   object-fit: contain;
-  border-radius: 12px;
-  margin: 8px 0 8px 24px;
+  border-radius: 16px;
+}
+
+.sidebar-logo .logo-wordmark {
+  font-family: 'Sora', sans-serif;
+  font-weight: 800;
+  font-size: 15px;
+  letter-spacing: 0.04em;
+  color: var(--text-inv, #fdf5ee);
+  line-height: 1.2;
 }
 
 .nav-section-label {
@@ -104,7 +114,33 @@
 .user-info .name { font-size: 13px; font-weight: 600; color: var(--text-inv, #fdf5ee); }
 .user-info .lvl  { font-size: 11px; color: var(--orange-lt, #f5a670); font-family: 'Sora', sans-serif; font-weight: 600; }
 
-/* Responsividade padrão do menu lateral em todas as telas internas */
+/* Responsividade padrão do menu lateral em todas as telas internas.
+   Em telas pequenas o menu vira uma barra superior compacta, mas a
+   logo continua sempre visível — ela é a âncora da marca em qualquer
+   tamanho de tela. */
 @media (max-width: 768px) {
-  .sidebar { display: none; }
+  .sidebar {
+    width: 100%;
+    min-height: unset;
+    flex-direction: row;
+    align-items: center;
+    padding: 10px 16px;
+    position: sticky;
+    top: 0;
+  }
+
+  .sidebar-logo { margin: 0; }
+
+  .sidebar-logo .logo-img {
+    width: 56px;
+    height: 56px;
+  }
+
+  .nav-section-label,
+  .nav-item,
+  .sidebar-spacer,
+  .sidebar-user,
+  .logo-wordmark {
+    display: none;
+  }
 }

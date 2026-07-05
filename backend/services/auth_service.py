@@ -58,4 +58,9 @@ async def login(email: str, senha: str) -> dict:
     if not bcrypt.checkpw(senha.encode("utf-8"), user.senha_hash.encode("utf-8")):
         raise ValueError("Email ou senha inválidos")
 
-    return {"message": "Login realizado com sucesso", "user_id": str(user.id), "tipo": user.tipo}
+    return {
+        "message": "Login realizado com sucesso",
+        "user_id": str(user.id),
+        "jovem_id": user.perfil_id,
+        "tipo": user.tipo,
+    }

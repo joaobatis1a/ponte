@@ -84,8 +84,8 @@ ul { margin: 0; padding: 0; list-style: none; }
   background: rgba(255, 255, 255, .85);
   box-shadow: 0 1px 0 rgba(255,255,255,.6) inset, 0 16px 34px -16px rgba(43,27,20,.35);
 }
-.nav-brand { display: flex; align-items: center; gap: 10px; font-weight: 900; font-size: 1.1rem; }
-.nav-brand img { width: 34px; height: 34px; object-fit: contain; }
+.nav-brand { display: flex; align-items: center; gap: 12px; font-weight: 900; font-size: 1.25rem; }
+.nav-brand img { width: 52px; height: 52px; object-fit: contain; }
 .nav-brand span { letter-spacing: .01em; }
 .nav-links { display: flex; gap: 6px; font-weight: 700; color: var(--muted); }
 .nav-links a {
@@ -525,8 +525,8 @@ ul { margin: 0; padding: 0; list-style: none; }
   padding-bottom: 44px; border-bottom: 1px solid rgba(255,255,255,.1);
 }
 .foot-col-brand p { color: #c9a893; font-weight: 600; max-width: 320px; margin: 14px 0 18px; font-size: .92rem; line-height: 1.55; }
-.foot-brand { display: flex; align-items: center; gap: 10px; font-weight: 900; font-size: 1.15rem; }
-.foot-brand img { width: 34px; height: 34px; }
+.foot-brand { display: flex; align-items: center; gap: 12px; font-weight: 900; font-size: 1.25rem; }
+.foot-brand img { width: 48px; height: 48px; object-fit: contain; }
 .foot-badges { display: flex; gap: 8px; }
 .foot-badges span {
   font-size: .72rem; font-weight: 800; letter-spacing: .04em; color: #ffd9c2;
