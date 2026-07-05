@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>P.O.N.T.E. — Oportunidades</title>
+  <link rel="stylesheet" href="css/desafio.css">
+  <link rel="stylesheet" href="css/oportunidade.css">
+  <link rel="stylesheet" href="css/oportunidades.css">
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <img src="assets/logo-1.png" alt="P.O.N.T.E. logo" class="logo-img">
+    </div>
+
+    <div class="nav-section-label">Menu</div>
+
+    <div class="nav-item" data-page="home">
+      <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      Home
+    </div>
+
+    <div class="nav-item active" data-page="vagas">
+      <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2"><rect x="3" y="7" width="5" height="14" rx="1"/><rect x="9.5" y="3" width="5" height="18" rx="1"/><rect x="16" y="10" width="5" height="11" rx="1"/></svg>
+      Vagas
+    </div>
+
+    <div class="nav-item" data-page="mensagens">
+      <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      Mensagens
+      <span class="nav-badge" id="msg-badge">3</span>
+    </div>
+
+    <div class="sidebar-spacer"></div>
+
+    <div class="sidebar-user">
+      <div class="user-avatar">MA</div>
+      <div class="user-info">
+        <div class="name">Maria A.</div>
+        <div class="lvl">⚡ LVL 4 · 2.450 XP</div>
+      </div>
+    </div>
+  </aside>
+
+  <div class="main">
+
+    <div class="topbar">
+      <div class="topbar-title">Oportunidades</div>
+
+      <div class="search-bar">
+        <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="#c0a090" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="text" id="job-search" placeholder="Buscar por cargo, empresa ou tecnologia…">
+      </div>
+    </div>
+
+    <div class="content">
+
+      <div class="opp-filters">
+        <div class="pills" id="modalidade-pills">
+          <div class="pill active" data-filter="all">Todas</div>
+          <div class="pill" data-filter="remoto">Remoto</div>
+          <div class="pill" data-filter="hibrido">Híbrido</div>
+          <div class="pill" data-filter="presencial">Presencial</div>
+        </div>
+
+        <select class="opp-select" id="area-select">
+          <option value="all">Todas as áreas</option>
+          <option value="Tecnologia">Tecnologia</option>
+          <option value="Design">Design</option>
+          <option value="Suporte">Suporte Técnico</option>
+          <option value="Dados">Dados</option>
+        </select>
+      </div>
+
+      <div class="section-header">
+        <div class="section-title" id="results-count">Vagas disponíveis</div>
+      </div>
+
+      <div class="jobs-grid" id="jobs-grid"></div>
+
+      <div class="empty-state" id="empty-state" style="display:none;">
+        <span class="empty-icon">🦀</span>
+        <strong>Nenhuma vaga encontrada</strong>
+        <span>Tenta ajustar a busca ou os filtros.</span>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="js/nav.js"></script>
+  <script src="js/oportunidades.js"></script>
+</body>
+</html>

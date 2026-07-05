@@ -5,7 +5,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   const routes = {
     home: 'feed.html',
-    vagas: 'oportunidade.html',
+    vagas: 'oportunidades.html',
     mensagens: 'chat.html',
   };
 

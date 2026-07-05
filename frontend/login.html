@@ -10,7 +10,40 @@
   <link rel="stylesheet" href="css/login.css"/>
   </head>
   <body>
+    <div class="auth-shell">
+      <aside class="auth-visual" aria-hidden="true">
+        <div class="auth-aurora">
+          <span class="aaurora a1"></span>
+          <span class="aaurora a2"></span>
+        </div>
+        <div class="auth-visual-content">
+          <a href="index.html" class="auth-logo">
+            <img src="assets/logo-1.png" alt="" />
+            <span>P.O.N.T.E.</span>
+          </a>
+          <h2>Bom te ver de novo por aqui.</h2>
+          <p>Continua de onde parou: teus desafios, tua conversa com o Manguelito e teu Ponte Pass te esperam.</p>
+          <div class="auth-visual-card">
+            <div class="pass-mini">
+              <div class="pass-mini-top">
+                <div class="pass-avatar">MA</div>
+                <div>
+                  <strong>Maria A.</strong>
+                  <span>⚡ Lvl 4 · 2.450 XP</span>
+                </div>
+              </div>
+              <div class="pass-mini-skills">
+                <span>UX Research</span>
+                <span>Figma</span>
+                <span>Storytelling</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </aside>
+
     <main class="card" role="main">
+      <div class="card-box">
       <header class="topbar">
         <button class="icon-btn" id="helpBtn" aria-label="Ajuda" type="button">
           <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 1.5-2.5 2-2.5 4"/><circle cx="12" cy="17" r="0.6" fill="currentColor"/></svg>
@@ -28,8 +61,8 @@
       </div>
 
       <h1 class="title">Faça <span class="accent">login</span>!</h1>
-      <br>
-      
+      <p class="subtitle">Que bom te ver de novo por aqui.</p>
+
       <form id="loginForm" class="form" novalidate>
         <div class="field">
           <label for="email">Email</label>
@@ -48,6 +81,13 @@
           <p class="error" id="senha-error" hidden></p>
         </div>
 
+        <div class="login-extra">
+          <label class="remember-me">
+            <input type="checkbox" id="remember" />
+            <span>Lembrar de mim</span>
+          </label>
+          <a href="#" class="forgot-link">Esqueci minha senha</a>
+        </div>
 
         <div class="captcha" id="captcha">
           <label class="captcha-check">
@@ -68,11 +108,13 @@
           <button type="submit" class="btn">Entrar</button>
         </div>
 
-        <p class="login-hint" style="grid-column:1/-1;text-align:center;margin-top:8px;font-size:.92rem;color:var(--muted)">
-          Não tem cadastro? <a href="cadastro.html" style="color:var(--primary);font-weight:800;text-decoration:none">Cadastre-se</a>
+        <p class="login-hint">
+          Não tem cadastro? <a href="cadastro.html" class="hint-link">Cadastre-se</a>
         </p>
       </form>
+      </div>
     </main>
+    </div>
 
     <div id="toast" class="toast" role="status" aria-live="polite"></div>
     <script src="https://www.google.com/recaptcha/api.js"></script>
