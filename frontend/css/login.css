@@ -119,8 +119,8 @@ body { display: block; }
 
 /* Progresso */
 .progress {
-  margin-top: -20px;
-  margin-bottom: 40px;
+  margin-top: 24px;
+  margin-bottom: 32px;
   height: 8px;
   width: 100%;
   background: var(--secondary);
