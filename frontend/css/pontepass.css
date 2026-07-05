@@ -5,11 +5,20 @@
 ═══════════════════════════════════════════════════════════ */
 
 .pp-layout {
-  max-width: 760px;
+  max-width: 1080px;
   margin: 0 auto;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 380px 1fr;
   gap: 28px;
+  align-items: start;
+}
+
+.pp-side { display: flex; flex-direction: column; gap: 20px; position: sticky; top: 0; }
+.pp-main { display: flex; flex-direction: column; gap: 24px; }
+
+@media (max-width: 900px) {
+  .pp-layout { grid-template-columns: 1fr; }
+  .pp-side { position: static; }
 }
 
 /* ── Carteirinha ── */
@@ -28,6 +37,20 @@
   background: radial-gradient(circle, rgba(224,122,58,.35), transparent 70%);
   pointer-events: none;
 }
+.pp-card-shine {
+  position: absolute; inset: 0; pointer-events: none; overflow: hidden;
+}
+.pp-card-shine::before {
+  content: ''; position: absolute; top: 0; left: -60%; width: 40%; height: 100%;
+  background: linear-gradient(75deg, transparent, rgba(255,255,255,.16), transparent);
+  animation: shineSweep 5s ease-in-out infinite;
+}
+@keyframes shineSweep {
+  0% { left: -60%; }
+  40%, 100% { left: 120%; }
+}
+.pp-card:hover { transform: translateY(-4px); box-shadow: 0 30px 60px -20px rgba(80,30,10,.4); }
+.pp-card { transition: transform .3s cubic-bezier(.22,1,.36,1), box-shadow .3s ease; }
 .pp-card-top { position: relative; display: flex; align-items: center; justify-content: space-between; margin-bottom: 22px; }
 .pp-card-brand { display: flex; align-items: center; gap: 10px; }
 .pp-card-brand img { width: 28px; height: 28px; object-fit: contain; }
@@ -59,12 +82,20 @@
 
 /* ── Seções ── */
 .pp-section { background: var(--card); border: 2px solid var(--card-border); border-radius: var(--radius); padding: 24px 26px; box-shadow: var(--shadow); }
+.pp-section .section-heading {
+  display: flex; align-items: center; gap: 10px; font-family: 'Sora', sans-serif;
+  font-weight: 800; font-size: 1rem; color: var(--text-dark);
+  padding-bottom: 14px; margin-bottom: 16px; border-bottom: 1.5px solid var(--card-border);
+}
+.pp-section .section-icon { font-size: 1.1rem; }
 
 .pp-skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 12px; margin-top: 6px; }
 .pp-skill {
   display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: .9rem;
   background: var(--bg); border-radius: 12px; padding: 10px 14px;
+  transition: transform .2s cubic-bezier(.34,1.56,.64,1), box-shadow .2s ease;
 }
+.pp-skill:hover { transform: translateY(-3px); box-shadow: 0 10px 20px -8px rgba(80,30,10,.25); }
 .pp-skill-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
 .pp-skill-dot.desafio { background: var(--desafio); }
 .pp-skill-dot.vaga { background: var(--vaga, #2a5d9f); }
@@ -72,12 +103,24 @@
 
 .pp-badges-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 14px; margin-top: 6px; }
 .pp-badge {
-  display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center;
+  position: relative; display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center;
   padding: 18px 10px; border-radius: 16px; background: var(--bg);
   font-size: .8rem; font-weight: 700; color: var(--text-mid);
+  transition: transform .25s cubic-bezier(.34,1.56,.64,1), box-shadow .25s ease;
 }
+.pp-badge.unlocked:hover { transform: translateY(-5px) scale(1.03); box-shadow: 0 14px 26px -10px rgba(224,122,58,.35); }
+.pp-badge.unlocked { background: linear-gradient(160deg, #fff9f4, var(--bg)); border: 1.5px solid var(--desafio-lt); }
 .pp-badge-icon { font-size: 1.8rem; }
 .pp-badge.locked { opacity: .4; filter: grayscale(1); }
+
+/* ── Resumo rápido ── */
+.pp-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.pp-stat {
+  background: var(--card); border: 2px solid var(--card-border); border-radius: 16px;
+  padding: 14px 8px; text-align: center; box-shadow: var(--shadow);
+}
+.pp-stat strong { display: block; font-family: 'Sora', sans-serif; font-size: 1.3rem; font-weight: 800; color: var(--orange-dk); }
+.pp-stat span { display: block; margin-top: 2px; font-size: .68rem; font-weight: 700; color: var(--text-light); line-height: 1.3; }
 
 .pp-timeline { list-style: none; margin: 6px 0 0; padding: 0; display: flex; flex-direction: column; gap: 18px; }
 .pp-timeline li { position: relative; display: flex; gap: 14px; padding-left: 4px; font-size: .92rem; }
