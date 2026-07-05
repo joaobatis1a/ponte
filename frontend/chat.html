@@ -3,51 +3,68 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <link rel="icon" href="assets/favicon.ico" sizes="any" />
+  <link rel="icon" href="assets/favicon-32.png" type="image/png" sizes="32x32" />
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
   <title>P.O.N.T.E. — Conversa com o Manguelito</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/sidebar.css" />
   <link rel="stylesheet" href="css/chat.css" />
 </head>
 <body>
   <div class="chat-app">
-    <aside class="chat-sidebar">
-      <div class="sidebar-top">
-        <a href="index.html" class="sidebar-brand">
-          <img src="assets/logo-1.png" alt="Mascote P.O.N.T.E." />
-          <span>P.O.N.T.E.</span>
-        </a>
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <img src="assets/logo-1.png" alt="P.O.N.T.E. logo" class="logo-img">
       </div>
-      <div class="sidebar-section-label">Conversas</div>
-      <nav class="sidebar-list">
-        <a class="sidebar-item active" href="chat.html">
-          <span class="sidebar-avatar"><img src="assets/logo-1.png" alt="" /></span>
-          <span class="sidebar-item-info">
+
+      <div class="nav-section-label">Menu</div>
+
+      <div class="nav-item" data-page="home">
+        <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        Home
+      </div>
+
+      <div class="nav-item" data-page="vagas">
+        <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2"><rect x="3" y="7" width="5" height="14" rx="1"/><rect x="9.5" y="3" width="5" height="18" rx="1"/><rect x="16" y="10" width="5" height="11" rx="1"/></svg>
+        Vagas
+      </div>
+
+      <div class="nav-item active" data-page="mensagens">
+        <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        Mensagens
+      </div>
+
+      <div class="sidebar-spacer"></div>
+
+      <div class="sidebar-user">
+        <div class="user-avatar"></div>
+        <div class="user-info">
+          <div class="name" id="sidebar-nome">Jovem</div>
+          <div class="lvl" id="sidebar-nivel">Lvl. 0</div>
+          <div class="lvl" id="sidebar-xp">0 XP</div>
+        </div>
+      </div>
+    </aside>
+
+    <aside class="chat-contacts">
+      <div class="chat-contacts-label">Conversas</div>
+      <nav class="chat-contacts-list">
+        <a class="chat-contact active" href="chat.html">
+          <span class="chat-contact-avatar"><img src="assets/logo-1.png" alt="" /></span>
+          <span class="chat-contact-info">
             <strong>Manguelito</strong>
             <span>Assistente de habilidades</span>
           </span>
-          <span class="sidebar-dot"></span>
-        </a>
-      </nav>
-      <div class="sidebar-section-label">Navegação</div>
-      <nav class="sidebar-list">
-        <a class="sidebar-item" href="feed.html">
-          <span class="sidebar-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="5" height="14" rx="1"/><rect x="9.5" y="3" width="5" height="18" rx="1"/><rect x="16" y="10" width="5" height="11" rx="1"/></svg></span>
-          <span class="sidebar-item-info"><strong>Desafios</strong></span>
-        </a>
-        <a class="sidebar-item" href="oportunidade.html">
-          <span class="sidebar-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg></span>
-          <span class="sidebar-item-info"><strong>Oportunidades</strong></span>
-        </a>
-        <a class="sidebar-item" href="pontepass.html">
-          <span class="sidebar-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"/><path d="M5.5 21a6.5 6.5 0 0 1 13 0"/></svg></span>
-          <span class="sidebar-item-info"><strong>Ponte Pass</strong></span>
+          <span class="chat-contact-dot"></span>
         </a>
       </nav>
     </aside>
 
-    <main class="card chat-card" role="main" aria-label="Cadastro com o Manguelito">
+    <main class="card chat-card" role="main" aria-label="Conversa com o Manguelito">
       <header class="topbar">
         <button class="icon-btn" type="button" aria-label="Voltar" id="btnBack">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
@@ -91,6 +108,7 @@
 
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
 
+  <script src="js/nav.js"></script>
   <script src="js/chat.js"></script>
 </body>
 </html>

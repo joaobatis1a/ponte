@@ -398,6 +398,58 @@ ul { margin: 0; padding: 0; list-style: none; }
 
 @media (max-width: 860px) { .how-grid { grid-template-columns: 1fr; } }
 
+/* ── Explorar a Demo ── */
+.demo-explore { max-width: 1180px; margin: 0 auto; padding: 10px 24px 100px; }
+.demo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 18px;
+}
+.demo-card {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 22px 22px 20px;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  text-decoration: none;
+  color: inherit;
+  position: relative;
+  transition: transform .25s cubic-bezier(.22,1,.36,1), box-shadow .25s ease, border-color .25s ease;
+  border: 1.5px solid transparent;
+}
+.demo-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow);
+  border-color: rgba(232, 99, 43, .3);
+}
+.demo-card-top { display: flex; align-items: center; justify-content: space-between; }
+.demo-icon {
+  width: 46px; height: 46px; border-radius: 14px; background: var(--secondary); color: var(--primary-dark);
+  display: grid; place-items: center; flex-shrink: 0;
+  transition: transform .25s ease, background .25s ease, color .25s ease;
+}
+.demo-card:hover .demo-icon { transform: scale(1.08) rotate(-4deg); background: var(--primary); color: #fff; }
+.demo-arrow {
+  color: var(--muted);
+  opacity: 0;
+  transform: translateX(-4px);
+  transition: opacity .2s ease, transform .2s ease;
+}
+.demo-card:hover .demo-arrow { opacity: 1; transform: translateX(0); color: var(--primary); }
+.demo-card h3 { font-size: 1rem; font-weight: 900; margin: 0; letter-spacing: -.01em; }
+.demo-card p { font-size: .84rem; color: var(--muted); font-weight: 600; line-height: 1.45; margin: 0; }
+.demo-card .demo-tag {
+  align-self: flex-start;
+  font-size: .68rem; font-weight: 800; letter-spacing: .06em; text-transform: uppercase;
+  color: var(--primary-dark); background: rgba(232,99,43,.12);
+  padding: 3px 10px; border-radius: 20px;
+}
+
+@media (max-width: 860px) { .demo-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 520px) { .demo-grid { grid-template-columns: 1fr; } }
+
 /* ── Split sections ── */
 .split {
   max-width: 1180px; margin: 0 auto; padding: 50px 24px;

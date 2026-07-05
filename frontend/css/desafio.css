@@ -48,102 +48,7 @@ body {
   color: var(--text-dark);
 }
 
-/* ═══════════════════════════════════════
-   SIDEBAR — cópia fiel do feed
-═══════════════════════════════════════ */
-.sidebar {
-  width: 240px;
-  min-height: 100vh;
-  background: var(--sidebar-bg);
-  display: flex;
-  flex-direction: column;
-  padding: 10px 0 28px;
-  flex-shrink: 0;
-  position: relative;
-  z-index: 10;
-}
- 
-.sidebar-logo {
-  display: flex;
-  align-items: center;
-}
-
-.logo-img {
-  width: 250px;
-  height: 150px;
-  object-fit: contain;
-  border-radius: 12px;
-}
-
-.nav-section-label {
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: #5a3828;
-  padding: 0 24px 10px;
-  font-family: 'Sora', sans-serif;
-}
-
-.nav-item {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 12px 24px;
-  cursor: pointer;
-  transition: background 0.18s;
-  color: #9a7060;
-  font-size: 14px;
-  font-weight: 500;
-  position: relative;
-}
-.nav-item:hover { background: rgba(255,255,255,.06); color: var(--text-inv); }
-.nav-item.active {
-  background: rgba(224,122,58,.15);
-  color: var(--orange-lt);
-}
-.nav-item.active::before {
-  content: '';
-  position: absolute;
-  left: 0; top: 6px; bottom: 6px;
-  width: 3px;
-  background: var(--orange);
-  border-radius: 0 3px 3px 0;
-}
-.nav-item svg { flex-shrink: 0; }
-
-.nav-badge {
-  margin-left: auto;
-  background: var(--orange);
-  color: #fff;
-  font-size: 10px;
-  font-weight: 700;
-  font-family: 'Sora', sans-serif;
-  padding: 2px 8px;
-  border-radius: 20px;
-}
-
-.sidebar-spacer { flex: 1; }
-
-.sidebar-user {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 16px 24px 0;
-  border-top: 1px solid #2e1a10;
-}
-.user-avatar {
-  width: 38px; height: 38px;
-  background: linear-gradient(135deg, var(--orange-lt), var(--orange-dk));
-  border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 14px; font-weight: 700;
-  color: #fff;
-  font-family: 'Sora', sans-serif;
-  flex-shrink: 0;
-}
-.user-info .name { font-size: 13px; font-weight: 600; color: var(--text-inv); }
-.user-info .lvl  { font-size: 11px; color: var(--orange-lt); font-family: 'Sora', sans-serif; font-weight: 600; }
+/* Menu lateral: componente único em css/sidebar.css (não duplicar aqui) */
 
 /* ═══════════════════════════════════════
    MAIN
@@ -742,7 +647,6 @@ body {
 
 @media (max-width: 768px) {
   body { overflow: auto; }
-  .sidebar { display: none; }
   .content { padding: 20px 20px calc(var(--action-bar-h) + 20px); }
   .topbar  { padding: 14px 20px; }
   .action-bar { padding: 0 20px; }

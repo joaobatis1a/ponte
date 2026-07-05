@@ -1,0 +1,110 @@
+/* ═══════════════════════════════════════════════════════════
+   P.O.N.T.E. — sidebar.css
+   Componente único de menu lateral, compartilhado por todas
+   as telas internas (Feed, Desafio, Oportunidades, Chat,
+   Ponte Pass etc). Não duplique estas regras em outros
+   arquivos — qualquer ajuste visual do menu deve ser feito
+   aqui para refletir em toda a aplicação.
+═══════════════════════════════════════════════════════════ */
+
+.sidebar {
+  width: 240px;
+  min-height: 100vh;
+  background: var(--sidebar-bg, #1e110a);
+  display: flex;
+  flex-direction: column;
+  padding: 10px 0 28px;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 10;
+}
+
+.sidebar-logo {
+  display: flex;
+  align-items: center;
+}
+
+.sidebar-logo .logo-img {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+  border-radius: 12px;
+  margin: 8px 0 8px 24px;
+}
+
+.nav-section-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #5a3828;
+  padding: 0 24px 10px;
+  font-family: 'Sora', sans-serif;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 24px;
+  cursor: pointer;
+  transition: background 0.18s;
+  color: #9a7060;
+  font-size: 14px;
+  font-weight: 500;
+  position: relative;
+  text-decoration: none;
+}
+.nav-item:hover { background: rgba(255,255,255,0.06); color: var(--text-inv, #fdf5ee); }
+.nav-item.active {
+  background: rgba(224,122,58,0.15);
+  color: var(--orange-lt, #f5a670);
+}
+.nav-item.active::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 6px; bottom: 6px;
+  width: 3px;
+  background: var(--orange, #e07a3a);
+  border-radius: 0 3px 3px 0;
+}
+.nav-item svg { flex-shrink: 0; }
+
+.nav-badge {
+  margin-left: auto;
+  background: var(--orange, #e07a3a);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  font-family: 'Sora', sans-serif;
+  padding: 2px 8px;
+  border-radius: 20px;
+}
+
+.sidebar-spacer { flex: 1; }
+
+.sidebar-user {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 24px 0;
+  border-top: 1px solid #2e1a10;
+  cursor: pointer;
+}
+.user-avatar {
+  width: 38px; height: 38px;
+  background: linear-gradient(135deg, var(--orange-lt, #f5a670), var(--orange-dk, #c45e20));
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; font-weight: 700;
+  color: #fff;
+  font-family: 'Sora', sans-serif;
+  flex-shrink: 0;
+}
+.user-info .name { font-size: 13px; font-weight: 600; color: var(--text-inv, #fdf5ee); }
+.user-info .lvl  { font-size: 11px; color: var(--orange-lt, #f5a670); font-family: 'Sora', sans-serif; font-weight: 600; }
+
+/* Responsividade padrão do menu lateral em todas as telas internas */
+@media (max-width: 768px) {
+  .sidebar { display: none; }
+}
