@@ -4,8 +4,12 @@
   const urlParams = new URLSearchParams(window.location.search);
   const desafioId = urlParams.get('id');
   const jovemId = localStorage.getItem('ponte_jovem_id');
-  const API_BASE = "http://127.0.0.1:8000";
+  const CONFIG = window.PONTE_CONFIG || { MODO_DEMO: true, API_BASE_URL: 'http://127.0.0.1:8000' };
+  const API_BASE = CONFIG.API_BASE_URL;
   let submissaoAtualId = null;
+  // Estado local usado só quando MODO_DEMO está ligado — permite simular
+  // "aceitar" e "enviar resolução" sem depender do backend.
+  const demoState = { aceito: false, submissao: null };
 
   // ---------------------------------------------------------------
   // Dados mockados — espelham os cards mostrados em feed.js (mesmos
@@ -135,7 +139,7 @@
           window.location.href = "feed.html";
           return;
       }
-      if (jovemId) await loadUserProfile();
+      if (jovemId && !CONFIG.MODO_DEMO) await loadUserProfile();
       const encontrado = await carregarDetalhesDoDesafio();
       if (!encontrado) {
           alert("Este desafio não existe ou não está mais disponível. Voltando ao Feed.");
@@ -166,14 +170,16 @@
   async function carregarDetalhesDoDesafio() {
     let desafio = null;
 
-    try {
-      const response = await fetch(`${API_BASE}/feed/desafios/${desafioId}`);
-      if (response.ok) {
-        const dados = await response.json();
-        if (dados && dados.titulo) desafio = dados;
+    if (!CONFIG.MODO_DEMO) {
+      try {
+        const response = await fetch(`${API_BASE}/feed/desafios/${desafioId}`);
+        if (response.ok) {
+          const dados = await response.json();
+          if (dados && dados.titulo) desafio = dados;
+        }
+      } catch (e) {
+        console.warn('[Desafio-Debug] API indisponível, tentando dados de demonstração.', e);
       }
-    } catch (e) {
-      console.warn('[Desafio-Debug] API indisponível, tentando dados de demonstração.', e);
     }
 
     if (!desafio) desafio = MOCK_DESAFIOS_DETALHADOS[desafioId];
@@ -267,6 +273,11 @@
   }
 
   async function verificarStatusDesafio() {
+      if (CONFIG.MODO_DEMO) {
+          submissaoAtualId = demoState.submissao ? demoState.submissao.id : null;
+          atualizarInterface(demoState.aceito, demoState.submissao);
+          return;
+      }
       if (!jovemId) {
           // Modo visitante: sem sessão não há como saber se o desafio já
           // foi aceito, então mostramos o estado inicial (não aceito).
@@ -341,6 +352,14 @@
                   return;
               }
               btnAccept.disabled = true; btnAccept.textContent = "Salvando...";
+
+              if (CONFIG.MODO_DEMO) {
+                  demoState.aceito = true;
+                  await verificarStatusDesafio();
+                  document.getElementById('section-submission-form').scrollIntoView({ behavior: 'smooth', block: 'center' });
+                  return;
+              }
+
               try {
                   await fetch(`${API_BASE}/feed/desafios/${desafioId}/aceitar`, {
                       method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ jovem_id: jovemId })
@@ -372,6 +391,12 @@
                   alert("Cancela! O link tem que ser do Google Drive."); return;
               }
 
+              if (CONFIG.MODO_DEMO) {
+                  demoState.submissao = { id: 'demo-submissao', link_externo, descricao };
+                  await verificarStatusDesafio();
+                  return;
+              }
+
               try {
                   await fetch(`${API_BASE}/feed/submissao`, {
                       method: 'POST', headers: { 'Content-Type': 'application/json' },
@@ -386,6 +411,13 @@
   async function deletarSubmissao() {
       if (!submissaoAtualId) return;
       if (!confirm("Desejas mesmo apagar esta resolução?")) return;
+
+      if (CONFIG.MODO_DEMO) {
+          demoState.submissao = null;
+          await verificarStatusDesafio();
+          return;
+      }
+
       try {
           await fetch(`${API_BASE}/feed/submissao/${submissaoAtualId}`, { method: 'DELETE' });
           await verificarStatusDesafio();

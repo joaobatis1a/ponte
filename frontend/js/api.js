@@ -1,4 +1,5 @@
-const API_URL = "http://127.0.0.1:8000/auth/cadastro/jovem";
+const CONFIG = window.PONTE_CONFIG || { MODO_DEMO: true, API_BASE_URL: 'http://127.0.0.1:8000' };
+const API_URL = `${CONFIG.API_BASE_URL}/auth/cadastro/jovem`;
 const MOCK_MODE = false;
 
 // Função segura para mostrar mensagem (se não achar o HTML, usa o alert nativo)
@@ -95,6 +96,16 @@ async function enviarParaAPI(state) {
     const json = await montarJSON(state);
 
     console.log(`[API-Debug] 3. Disparando POST para: ${API_URL}`);
+
+    if (CONFIG.MODO_DEMO) {
+      console.log('[API-Debug] MODO_DEMO ativo, pulando chamada à API e simulando cadastro.');
+      localStorage.setItem('ponte_user_id', 'demo-user');
+      localStorage.setItem('ponte_jovem_id', 'demo-jovem');
+      mostrarToast("Cadastro salvo! Indo pro Manguelito...", "success");
+      setTimeout(() => { window.location.href = "chat.html"; }, 1500);
+      return;
+    }
+
     const res = await fetch(API_URL, {
       method:  "POST",
       headers: { "Content-Type": "application/json" },

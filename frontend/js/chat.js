@@ -11,7 +11,18 @@
   const toastEl = document.getElementById('toast');
 
   // URL do Backend do Pedro (Ajuste a porta/URL conforme o ambiente de vocês)
-  const API_CHAT_URL = 'http://127.0.0.1:8000/chat/mensagem';
+  const CONFIG = window.PONTE_CONFIG || { MODO_DEMO: true, API_BASE_URL: 'http://127.0.0.1:8000' };
+  const API_CHAT_URL = `${CONFIG.API_BASE_URL}/chat/mensagem`;
+
+  // Respostas de demonstração do Manguelito, usadas quando MODO_DEMO
+  // está ligado (sem backend real pra conversar de verdade).
+  const RESPOSTAS_DEMO = [
+    "Massa! Me conta mais sobre isso — que parte tu curtiu mais fazer?",
+    "Ave, isso já é uma baita habilidade! Vou anotar aqui no teu perfil.",
+    "Entendi. E antes disso, tu já tinha feito algo parecido?",
+    "Boa! Isso conta muito pra gente montar teu Ponte Pass direitinho."
+  ];
+  let demoRespostaIndex = 0;
 
   // --- Funções de UI ---
   function nowHM() {
@@ -65,6 +76,17 @@
 
   // --- O Cérebro Real (Comunicação com teu Backend Python) ---
   async function sendMessageToBackend(userMessage) {
+    if (CONFIG.MODO_DEMO) {
+      showTyping();
+      setTimeout(() => {
+        hideTyping();
+        const resposta = RESPOSTAS_DEMO[demoRespostaIndex % RESPOSTAS_DEMO.length];
+        demoRespostaIndex++;
+        addRow('bot', resposta);
+      }, 900);
+      return;
+    }
+
     try {
       showTyping();
       

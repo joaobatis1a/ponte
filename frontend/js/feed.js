@@ -1,7 +1,8 @@
 (function () {
   'use strict';
 
-  const API_FEED_URL = 'http://127.0.0.1:8000/feed/desafios';
+  const CONFIG = window.PONTE_CONFIG || { MODO_DEMO: true, API_BASE_URL: 'http://127.0.0.1:8000' };
+  const API_FEED_URL = `${CONFIG.API_BASE_URL}/feed/desafios`;
   const jovemId = localStorage.getItem('ponte_jovem_id');
 
   // ---------------------------------------------------------------
@@ -85,9 +86,9 @@
 
   // 1. Busca os dados reais do perfil
   async function loadUserProfile() {
-    if (!jovemId) return;
+    if (!jovemId || CONFIG.MODO_DEMO) return;
     try {
-      const res = await fetch(`http://127.0.0.1:8000/profile/${jovemId}`);
+      const res = await fetch(`${CONFIG.API_BASE_URL}/profile/${jovemId}`);
       if (!res.ok) throw new Error('Perfil indisponível');
 
       const data = await res.json();
@@ -114,13 +115,15 @@
     }
 
     let desafiosArray = [];
-    try {
-      const response = await fetch(API_FEED_URL);
-      if (!response.ok) throw new Error('Erro na API de Feed');
-      const rawData = await response.json();
-      desafiosArray = rawData.desafios || [];
-    } catch (error) {
-      console.warn('[Feed-Debug] API indisponível, usando dados de demonstração.', error);
+    if (!CONFIG.MODO_DEMO) {
+      try {
+        const response = await fetch(API_FEED_URL);
+        if (!response.ok) throw new Error('Erro na API de Feed');
+        const rawData = await response.json();
+        desafiosArray = rawData.desafios || [];
+      } catch (error) {
+        console.warn('[Feed-Debug] API indisponível, usando dados de demonstração.', error);
+      }
     }
 
     if (desafiosArray.length === 0) desafiosArray = MOCK_DESAFIOS;

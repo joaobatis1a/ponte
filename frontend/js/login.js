@@ -25,7 +25,8 @@
           });
         });
 
-        const API_LOGIN_URL = 'http://127.0.0.1:8000/auth/login';
+        const CONFIG = window.PONTE_CONFIG || { MODO_DEMO: true, API_BASE_URL: 'http://127.0.0.1:8000' };
+        const API_LOGIN_URL = `${CONFIG.API_BASE_URL}/auth/login`;
 
         // Salva a sessão do jovem no localStorage. Sem isso, nenhuma
         // página interna (desafio, submissão etc.) sabe "quem" está
@@ -52,6 +53,8 @@
           if (submitBtn) submitBtn.disabled = true;
 
           try {
+            if (CONFIG.MODO_DEMO) throw new Error('MODO_DEMO ativo');
+
             const res = await fetch(API_LOGIN_URL, {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
@@ -71,10 +74,14 @@
               throw new Error('API indisponível');
             }
           } catch (err) {
-            // Backend fora do ar (ambiente de demonstração): segue com
-            // uma sessão de demo em vez de travar o usuário na tela de
-            // login, mesmo comportamento adotado no restante do app.
-            console.warn('[Login-Debug] API indisponível, entrando em modo demo.', err);
+            // MODO_DEMO ligado (js/config.js) ou backend fora do ar: segue
+            // com uma sessão de demo em vez de travar o usuário na tela
+            // de login, mesmo comportamento adotado no restante do app.
+            if (CONFIG.MODO_DEMO) {
+              console.log('[Login-Debug] MODO_DEMO ativo, pulando chamada à API.');
+            } else {
+              console.warn('[Login-Debug] API indisponível, entrando em modo demo.', err);
+            }
             salvarSessao(null, 'demo-jovem');
             toast('Login realizado!', 'success');
           }
