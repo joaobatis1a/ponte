@@ -485,3 +485,31 @@ body {
 .card.hidden {
   display: none;
 }
+
+/* ── Responsividade mobile ──────────────────────────────────
+   O grid de cards usava minmax(340px, 1fr), maior que a largura
+   útil de uma tela de celular — isso forçava os cards a ficarem
+   mais largos que o container, cortando/escondendo os que não
+   cabiam na primeira "coluna" fantasma. Idem para o padding do
+   topbar e do conteúdo, grandes demais pra telas pequenas. */
+@media (max-width: 768px) {
+  .topbar {
+    padding: 16px 18px;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .topbar-title { font-size: 18px; width: 100%; }
+  .search-bar { padding: 8px 16px; min-width: 0; }
+
+  .content { padding: 20px 18px; }
+
+  .pills { gap: 8px; margin-bottom: 20px; }
+  .pill { padding: 9px 18px; font-size: 13px; }
+
+  .cards-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .card { padding: 20px; }
+  .card.desafio.featured { grid-column: span 1; }
+}

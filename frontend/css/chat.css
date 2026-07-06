@@ -59,7 +59,7 @@ body {
   min-width: 0;
   max-width: none;
   width: 100%;
-  height: 100vh;
+  height: 100%;
   padding: 0;
   margin: 0;
   border-radius: 0;
@@ -369,7 +369,7 @@ body {
 
 /* Mobile tweaks */
 @media (max-width: 380px) {
-  .chat-card { padding: 14px 14px 12px; height: 96vh; }
+  .chat-card { padding: 14px 14px 12px; }
   .bubble { max-width: 84%; font-size: 0.9rem; }
   .composer input { font-size: 0.9rem; padding: 11px 16px; }
 }
