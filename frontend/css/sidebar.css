@@ -115,25 +115,31 @@
 .user-info .lvl  { font-size: 11px; color: var(--orange-lt, #f5a670); font-family: 'Sora', sans-serif; font-weight: 600; }
 
 /* Responsividade padrão do menu lateral em todas as telas internas.
-   Em telas pequenas o menu vira uma barra superior compacta, mas a
-   logo continua sempre visível — ela é a âncora da marca em qualquer
-   tamanho de tela. */
+   Em telas pequenas o menu vira uma barra fixa no topo, fora do
+   fluxo do layout (senão ele continua sendo tratado como item do
+   flex ao lado de .main/.chat-app, e ocupa 100% da largura deles,
+   empurrando todo o conteúdo pra fora da tela — a causa da "tela
+   preta" no mobile). A logo continua sempre visível. */
 @media (max-width: 768px) {
   .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
     width: 100%;
+    height: 64px;
     min-height: unset;
     flex-direction: row;
     align-items: center;
-    padding: 10px 16px;
-    position: sticky;
-    top: 0;
+    padding: 8px 16px;
+    z-index: 100;
   }
 
   .sidebar-logo { margin: 0; }
 
   .sidebar-logo .logo-img {
-    width: 56px;
-    height: 56px;
+    width: 44px;
+    height: 44px;
   }
 
   .nav-section-label,
@@ -142,5 +148,16 @@
   .sidebar-user,
   .logo-wordmark {
     display: none;
+  }
+
+  /* Compensa a barra fixa: empurra o conteúdo principal pra baixo
+     dela em vez de deixá-lo escondido atrás. box-sizing: border-box
+     (definido globalmente) garante que o padding entra dentro da
+     altura de 100vh já usada por esses containers, então nada fica
+     cortado embaixo. */
+  .main,
+  .chat-app {
+    width: 100%;
+    padding-top: 64px;
   }
 }
