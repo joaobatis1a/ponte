@@ -15,6 +15,8 @@ Conecta jovens a desafios profissionais reais, ajudando a transformar experiênc
 
 🔗 **Demo (somente frontend):** [ponte-demo.vercel.app](https://ponte-demo.vercel.app)
 
+![Captura de tela do P.O.N.T.E.](docs/img/preview.png)
+
 ## 🧱 Estrutura do projeto
 
 ```
