@@ -1,8 +1,19 @@
-# Ponte
+# P.O.N.T.E.
 
-Plataforma que conecta jovens a desafios profissionais reais, ajudando-os a transformar experiências do dia a dia em habilidades reconhecidas — com apoio do "Manguelito", um assistente de IA que extrai skills a partir de conversas.
+**Plataforma de oportunidades para jovens talentos** · FastAPI · MongoDB
 
-🔗 Demo: ainda não publicada — veja a seção **Deploy no Vercel** abaixo para colocar uma no ar.
+[![Demo](https://img.shields.io/badge/demo-online-F97316?style=flat-square)](https://ponte-demo.vercel.app)
+[![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)](https://www.python.org)
+[![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=flat-square&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com)
+[![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=flat-square&logo=mongodb&logoColor=white)](https://www.mongodb.com)
+
+> **Projeto acadêmico desenvolvido em equipe (5 pessoas), 1º lugar como melhor proposta de software na UNIFAFIRE.**
+> Minha atuação: Front-end Lead & Scrum Master.
+> Repositório original da equipe: [guifigueireedo/ponte-mvp](https://github.com/guifigueireedo/ponte-mvp)
+
+Conecta jovens a desafios profissionais reais, ajudando a transformar experiências do dia a dia em habilidades reconhecidas, com apoio do "Manguelito", um assistente de IA que extrai skills a partir de conversas.
+
+🔗 **Demo (somente frontend):** [ponte-demo.vercel.app](https://ponte-demo.vercel.app)
 
 ## 🧱 Estrutura do projeto
 
@@ -19,7 +30,7 @@ ponte-main/
 - ⚡ FastAPI + Uvicorn
 - 🍃 MongoDB (via Motor + Beanie ODM)
 - 🔐 bcrypt (hash de senha)
-- 🤖 Groq API (chat com IA — modelo `llama-3.1-8b-instant` por padrão)
+- 🤖 Groq API (chat com IA, modelo `llama-3.1-8b-instant` por padrão)
 
 **Frontend**
 - 🌐 HTML5
@@ -77,7 +88,7 @@ O servidor sobe em `http://localhost:8000`. Documentação automática (Swagger)
 
 ### 3. Rodar o frontend
 
-O frontend é HTML/CSS/JS puro — não precisa de build. Basta servir a pasta `frontend/`:
+O frontend é HTML/CSS/JS puro, não precisa de build. Basta servir a pasta `frontend/`:
 
 ```bash
 cd frontend
@@ -86,7 +97,7 @@ python3 -m http.server 5500
 
 Depois acesse `http://localhost:5500`.
 
-⚠️ **Atenção:** hoje as páginas do frontend (`index.html`, `login.html`, `cadastro.html`, `feed.html`, `chat.html`, etc.) ainda **não fazem chamadas `fetch` para a API** — é uma interface navegável, mas as ações (login, cadastro, chat, feed) ainda não estão conectadas ao backend.
+⚠️ **Atenção:** hoje as páginas do frontend (`index.html`, `login.html`, `cadastro.html`, `feed.html`, `chat.html`, etc.) ainda **não fazem chamadas `fetch` para a API**. É uma interface navegável, mas as ações (login, cadastro, chat, feed) ainda não estão conectadas ao backend.
 
 ## 🌐 Deploy no Vercel (somente frontend)
 
@@ -96,7 +107,7 @@ Como o frontend é 100% estático, dá pra publicar uma demo visual rapidinho:
 2. No Vercel, importe o repositório normalmente.
 3. Em **Framework Preset**, deixe **Other**.
 4. Em **Root Directory**, selecione a pasta `frontend`.
-5. Não defina Build Command nem Output Directory — deixe em branco.
+5. Não defina Build Command nem Output Directory, deixe em branco.
 6. Deploy.
 
 **O que funciona:** navegação entre as páginas, layout, estilos e responsividade.
@@ -106,7 +117,7 @@ Como o frontend é 100% estático, dá pra publicar uma demo visual rapidinho:
 
 Seria necessário:
 
-1. Hospedar o backend FastAPI em um serviço compatível com processos "always on" (Render, Railway, Fly.io — o Vercel não é ideal aqui, por causa da conexão persistente com o MongoDB na inicialização).
+1. Hospedar o backend FastAPI em um serviço compatível com processos "always on" (Render, Railway, Fly.io; o Vercel não é ideal aqui, por causa da conexão persistente com o MongoDB na inicialização).
 2. Hospedar o banco MongoDB (ex: MongoDB Atlas, tem plano grátis).
 3. Configurar `MONGODB_URL` e `GROQ_API_KEY` como variáveis de ambiente no serviço escolhido.
 4. Implementar as chamadas `fetch` no frontend, apontando para a URL pública do backend.
@@ -115,6 +126,11 @@ Seria necessário:
 
 Nunca exponha credenciais de banco de dados, chaves de API ou tokens em arquivos versionados no Git. Use sempre um `.env` (já ignorado pelo Git neste projeto).
 
-## 📧 Contato
+## Autor
 
-Para mais informações, entre em contato por e-mail: profissionalba1is1a@gmail.com
+**João Batista da Silva Neto**
+Front-end Lead & Scrum Master
+
+- GitHub: [@joaobatis1a](https://github.com/joaobatis1a)
+- LinkedIn: [joao-batista-silva-neto](https://linkedin.com/in/joao-batista-silva-neto)
+- E-mail: [profissionalba1is1a@gmail.com](mailto:profissionalba1is1a@gmail.com)
